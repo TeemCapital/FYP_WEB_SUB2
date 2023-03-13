@@ -1,0 +1,41 @@
+
+<div class="container mt-5" *ngIf="showData==true">
+  <div class="row mt-5 bg-dark p-5">
+    <div class="col-md-12 p-3 text-center rounded">
+        <h1 class="text-white"><strong>YOUR CART</strong></h1>
+    </div>
+
+  </div>
+  <div  class="row mt-5 rounded border p-5 shadow" >
+    <div class="col-md-2" >
+      <img src="{{productData.image}}" class="img-fluid" alt="">
+    </div>
+    <div class="col-md-4 my-auto">
+      <h5>{{productData.title}}</h5>
+    </div>
+    <div class="col-md-5 my-auto">
+      <h6>Description</h6>
+      <p><strong>{{productData.description}}</strong></p>
+    </div>
+    <div class="col-md-1 my-auto p-2">
+      <h1 class="text-danger">Price/- {{productData.price | currency}}</h1>
+    </div>
+  </div>
+  <div class="checkout my-5">
+    <a class="btn btn-danger mx-auto"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
+    <a class="btn btn-dark mx-3" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="showData==false">
+  <div class="row">
+    <div class="col-md-6 text-center my-auto ">
+      <h4 class="bold">YOUR CART IS CURRENTLY EMPTY!</h4>
+      <a class="btn btn-dark" routerLink="/">Shop Now</a>
+    </div>
+    <div class="col-md-6 order-first order-md-last">
+      <img src="assets/images/cart-img.png" class="img-fluid" alt="">
+    </div>
+  </div>
+</div>

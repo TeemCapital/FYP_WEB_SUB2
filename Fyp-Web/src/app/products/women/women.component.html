@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="col-md-12 my-3 p-5 text-center bg-dark rounded">
+    <h1 class="text-white"><strong>PRELOVED CO. WOMEN COLLECTION</strong></h1>
+</div>
+  <div class="row">
+    <div class="col-md-12 my-5" *ngFor="let product of womenProducts" style="width: 18rem;" >
+      <div class="card shadow" >
+        <img src={{product.imgUrl}} class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text"><b> Some quick example text to build on the card title and make up the bulk of the card's content.</b></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-danger">Price: {{product.price | currency}} </li>
+        </ul>
+        <div class="card-body">
+          <a class="btn btn-dark" routerLink="{{product.id}}">CHECK IT OUT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
