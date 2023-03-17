@@ -18,12 +18,14 @@ export class WomenProductsDetailsComponent implements OnInit {
     this.activatedroute.paramMap.subscribe((param)=>{
     this.productid=param.get('id')
     this.product=this.prodServ.WomensProducts.find(x=>x.id==this.productid)
-    this.prodServ.productData.push(this.product)
-    console.log(this.prodServ.productData)
+    console.log(this.product)
   })
-
   }
   AddtoCart(){
+    this.prodServ.cartProduct.push(this.product)
+    console.log(this.prodServ.productData)
+    let count=this.prodServ.count++;
+    this.prodServ.cartItemsCount$.next((count));
     this.cart=true
     setTimeout(() => {
       this.cart=false

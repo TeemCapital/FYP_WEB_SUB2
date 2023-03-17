@@ -1,3 +1,4 @@
+import { ProductsModel } from './../../Services/products.model';
 import { ProductsServiceService } from '../../Services/products-service.service';
 import { Component, OnInit } from '@angular/core';
 import {faArrowRight,faShoppingBag} from '@fortawesome/free-solid-svg-icons'
@@ -9,7 +10,8 @@ import { Products } from '../../Interface/products';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  productData:any;
+  productData:ProductsModel[]=[];
+  MenproductData:ProductsModel[]=[];
   faArrow=faArrowRight;
   showData:boolean=false;
   faShopping=faShoppingBag;
@@ -17,10 +19,18 @@ export class CartComponent implements OnInit {
   constructor(private prodServ:ProductsServiceService) { }
 
   ngOnInit(): void {
-      this.productData=this.prodServ.cartProduct;
-    if(this.productData.length != 0){
-      this.showData= true;
+    this.MenproductData= this.prodServ.getAllmenCartProducts();
+    console.log(this.productData)
+
+    if(this.MenproductData.length !=0){
+      this.showData=true
+    }
+    else{
+      this.showData=false
     }
   }
 
+  delete(i:number){
+    this.MenproductData.splice(i,1)
+  }
 }

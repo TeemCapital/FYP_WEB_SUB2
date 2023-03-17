@@ -1,128 +1,135 @@
 import { Products } from './../Interface/products';
 import { ProductsModel } from './products.model';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsServiceService {
-  productData:Products[]=[]
-  cartProduct:Products[]=[];
+  productData:ProductsModel[]=[];
+  cartProduct:ProductsModel[]=[];
   favProduct:Products[]=[];
   fetchedProducts:Products[]=[];
+  cartItemsCount$: BehaviorSubject<number>=new BehaviorSubject(0);
+  count:number=1;
+
+  postedProduct:any;
+
+
   mensProducts:ProductsModel[]=[
     {
       id:1,
-      name:'Jacket 1',
-      desc:'Jackets to buy',
+      title:'Jacket 1',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/home_ban.jpg',
+      image:'assets/images/home_ban.jpg',
       category:'Mens Biker Jacket with inner-ligning'
     },
     {
       id:2,
-      name:'Jacket 2',
-      desc:'Jackets to buy',
+      title:'Jacket 2',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/home_ban.jpg',
+      image:'assets/images/home_ban.jpg',
       category:'Mens Biker Jacket with inner-ligning'
     },
     {
       id:3,
-      name:'Jacket 3',
-      desc:'Jackets to buy',
+      title:'Jacket 3',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/home_ban.jpg',
+      image:'assets/images/home_ban.jpg',
       category:'Mens Biker Jacket with inner-ligning'
     },
     {
       id:4,
-      name:'Jacket 4',
-      desc:'Jackets to buy',
+      title:'Jacket 4',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/home_ban.jpg',
+      image:'assets/images/home_ban.jpg',
       category:'Mens Biker Jacket with inner-ligning'
     },
     {
       id:5,
-      name:'Jacket 5',
-      desc:'Jackets to buy',
+      title:'Jacket 5',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/home_ban.jpg',
+      image:'assets/images/home_ban.jpg',
       category:'Mens Biker Jacket with inner-ligning'
     },
     {
       id:6,
-      name:'Jacket 6',
-      desc:'Jackets to buy',
+      title:'Jacket 6',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/home_ban.jpg',
+      image:'assets/images/home_ban.jpg',
       category:'Mens Biker Jacket with inner-ligning'
     },
     {
       id:7,
-      name:'Jacket 7',
-      desc:'Jackets to buy',
+      title:'Jacket 7',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/home_ban.jpg',
+      image:'assets/images/home_ban.jpg',
       category:'Mens Biker Jacket with inner-ligning'
     }
   ]
-  WomensProducts:ProductsModel[]=[
+  WomensProducts:any[]=[
     {
       id:8,
-      name:'Jacket8',
-      desc:'Jackets to buy',
+      title:'Jacket8',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/girls_jack.jpg',
+      image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
       id:9,
-      name:'Jacket9',
-      desc:'Jackets to buy',
+      title:'Jacket9',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/girls_jack.jpg',
+      image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
       id:10,
-      name:'Jacket10',
-      desc:'Jackets to buy',
+      title:'Jacket10',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/girls_jack.jpg',
+      image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
       id:11,
-      name:'Jacket11',
-      desc:'Jackets to buy',
+      title:'Jacket11',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/girls_jack.jpg',
+      image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
       id:12,
-      name:'Jacket12',
-      desc:'Jackets to buy',
+      title:'Jacket12',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/girls_jack.jpg',
+      image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
       id:13,
-      name:'Jacket13',
-      desc:'Jackets to buy',
+      title:'Jacket13',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/girls_jack.jpg',
+      image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
       id:14,
-      name:'Jacket14',
-      desc:'Jackets to buy',
+      title:'Jacket14',
+      description:'Jackets to buy',
       price:10 ,
-      imgUrl:'assets/images/girls_jack.jpg',
+      image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
     }
   ]
@@ -133,5 +140,8 @@ export class ProductsServiceService {
   getAllWomensProducts(){
     return[...this.WomensProducts]
   }
-
+  getAllmenCartProducts(){
+    return[...this.cartProduct]
+  }
+  
 }

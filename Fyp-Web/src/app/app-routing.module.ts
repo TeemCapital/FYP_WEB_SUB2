@@ -13,12 +13,10 @@ const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home', component:HomeComponent},
   {path:'cart',component:CartComponent},
-  {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
   {path:'favourite',component:FavouriteComponent},
-  {path:'userlogin',component:UserLoginComponent},
-  {path:'usersignup',component:UserSignupComponent},
   { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
+  { path: 'accounts', loadChildren: () => import('./Accounts/accounts.module').then(m => m.AccountsModule) },
+  { path: 'dashboard', loadChildren: () => import('./Dashboard/dashboard.module').then(m => m.DashboardModule) },
   {path:'**',component:PageNotFoundComponent}
 
 ];

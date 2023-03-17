@@ -4,11 +4,11 @@ Your Product has been added to your cart :)
 <div class="container mt-5">
   <div class="row mt-5 border rounded p-3 shadow">
     <div class="col-md-6">
-      <img src="{{product.imgUrl}}" class="img-fluid" alt="">
+      <img src="{{product.image}}" class="img-fluid" alt="">
     </div>
     <div class="col-md-6  my-auto">
-      <h3 ><strong> Item: {{product.name}}</strong></h3>
-      <p><b>Description: {{product.desc}}</b></p>
+      <h3 ><strong> Item: {{product.title}}</strong></h3>
+      <p><b>Description: {{product.description}}</b></p>
       <h5 class="text-danger">Price: {{product.price | currency}}</h5>
       <a class="btn btn-danger" (click)="AddtoCart()">Add to Cart</a>
     </div>

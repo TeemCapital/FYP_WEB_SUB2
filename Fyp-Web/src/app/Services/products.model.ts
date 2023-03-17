@@ -1,8 +1,8 @@
 export class ProductsModel{
   id!:number
-  name!:string
-  desc!:string
+  title!:string
+  description!:string
   price!:number
-  imgUrl!:string
+  image!:string
   category!:string
 }
