@@ -11,6 +11,7 @@ import { HttpServicesService } from 'src/app/Services/http-services.service';
 export class SellerDashboardComponent implements OnInit {
   showProduct:any[]=[];
   availableData:boolean=false;
+  showNotification:boolean=false;
   constructor(private prodServ:DashboardService,private womenSer:ProductsServiceService,private http:HttpServicesService) { }
 
   ngOnInit(): void {
@@ -20,11 +21,17 @@ export class SellerDashboardComponent implements OnInit {
       this.availableData=true;
     }
   }
+
   postProduct(){
-   this.womenSer.WomensProducts.push(...this.showProduct);
-   this.http.products.push(...this.showProduct)
-   console.log(this.womenSer.fetchedProducts)
+    this.showNotification=true;
+    setTimeout(() => {
+      this.womenSer.WomensProducts.push(...this.showProduct);
+      this.http.products.push(...this.showProduct)
+      this.showProduct.length=0;
+      this.showNotification=false;
+    }, 3000);
+
+    }
+
   }
 
-
-}

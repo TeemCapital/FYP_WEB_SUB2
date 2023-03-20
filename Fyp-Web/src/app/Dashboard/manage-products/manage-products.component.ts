@@ -18,7 +18,6 @@ export class ManageProductsComponent implements OnInit {
   }
   submit(data:any){
     this.Product={...data,id:this.http.products.length+5}
-    console.log(data)
     this.ProdServ.CreatedProduct.push(this.Product)
     this.route.navigate(['dashboard/dashboard'])
   }

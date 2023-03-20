@@ -1,35 +1,74 @@
 <div class="container">
-  <h1 class="text-center text-white bg-dark p-3 my-3 rounded" >Create a product</h1>
+  <h1 class="text-center text-white bg-dark p-3 my-3 rounded">
+    Create a product
+  </h1>
   <div class="row">
     <div class="col-md-8 mx-auto shadow">
       <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
-        <label class="form-label "><b>Product title</b></label>
+        <label class="form-label"
+          ><b>Product title</b
+          ><small style="color: red; font-size: 10px; margin-left: 5px"
+            >(Required*)</small
+          ></label
+        >
         <input
           ngModel
           name="title"
           type="text"
           placeholder="Enter Product Title"
           class="form-control"
+          required
         />
-        <label class="form-label "><b> Product Description</b></label>
+        <div class="invalid-feedback">This isnt a valid response</div>
+        <label class="form-label"
+          ><b> Product Description</b
+          ><small style="color: red; font-size: 10px; margin-left: 5px"
+            >(Required*)</small
+          ></label
+        >
         <textarea
           ngModel
           placeholder="Enter Product Description"
-          name="Description"
+          name="description"
           id=""
           cols="30"
           class="form-control"
           rows="10"
+          required
         ></textarea>
-        <label class="form-label "><b> Product price</b></label>
-        <input ngModel name="price" type="number" class="form-control" />
-        <label class="form-label "><b>category</b></label>
-        <input ngModel name="id" type="text" class="form-control" />
-        <label><b> Enter Product Image Url</b></label>
-        <input ngModel name="image" type="text" class="form-control" />
-        <Button class="btn btn-dark my-2">Create Product</Button>
+        <div class="invalid-feedback">This isnt a valid response</div>
+        <label class="form-label"
+          ><b> Product price</b
+          ><small style="color: red; font-size: 10px; margin-left: 5px"
+            >(Required*)</small
+          >
+        </label>
+        <input
+          required
+          ngModel
+          name="price"
+          type="number"
+          class="form-control"
+        />
+        <div class="invalid-feedback">This isnt a valid response</div>
+        <label class="form-label"
+          ><b>category</b
+          ><small style="color: red; font-size: 10px; margin-left: 5px"
+            >(Required*)</small
+          ></label
+        >
+        <input required ngModel name="id" type="text" class="form-control" />
+        <div class="invalid-feedback">This isnt a valid response</div>
+        <label>
+          <b> Enter Product Image Url</b>
+          <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small>
+        </label>
+        <input required ngModel name="image" type="text" class="form-control" />
+        <div class="invalid-feedback">This isnt a valid response</div>
+        <Button class="btn btn-dark my-2" [disabled]="!addProduct.valid">
+          Create Product
+          </Button>
       </form>
     </div>
-
   </div>
 </div>

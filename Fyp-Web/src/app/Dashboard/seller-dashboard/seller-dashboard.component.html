@@ -1,3 +1,6 @@
+<div class="alert alert-danger my-2" role="alert" *ngIf="showNotification==true">
+  Your Product has been posted!
+</div>
 <div class="container" *ngIf="availableData==false">
   <div class="row  text-center">
     <div class="col-md-6 my-auto">
@@ -12,13 +15,15 @@
 <div class="container mt-5" *ngFor="let product of showProduct">
   <div class="row mt-5 border rounded p-3 shadow">
     <div class="col-md-6">
-      <img src="{{product.image}}" class="img-fluid w-50"  alt="">
+      <img src="{{product.image}}" class="img-fluid"  alt="">
     </div>
     <div class="col-md-6  my-auto">
       <h3 class="text-white bg-dark rounded p-3"><strong>{{product.title}}</strong></h3>
-      <p><b>Description: {{product.Description}}</b></p>
+      <p><b>Description: {{product.description}}</b></p>
       <h5 class="text-danger">Price: {{product.price | currency}}</h5>
       <button class="btn btn-success" (click)="postProduct()">Post Product</button>
     </div>
   </div>
 </div>
+
+
