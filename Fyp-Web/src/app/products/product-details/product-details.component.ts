@@ -50,9 +50,9 @@ export class ProductDetailsComponent implements OnInit {
     this.totalAmount+=this.product.price;
     this.tempVariable=this.totalAmount;
     this.prodServ.totalCartAmout+=this.tempVariable;
-    this.prodServ.cartProduct.push(...this.product+this.quantity);
-    console.log(this.prodServ.cartProduct)
     this.prodServ.ProductQuantity=this.quantity
+    this.prodServ.cartProduct.push(this.product);
+    console.log(this.prodServ.cartProduct)
     let count=this.prodServ.count++;
     this.prodServ.cartItemsCount$.next((count));
     setTimeout(() => {
