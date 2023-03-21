@@ -13,9 +13,9 @@ export class ProductsServiceService {
   fetchedProducts:Products[]=[];
   cartItemsCount$: BehaviorSubject<number>=new BehaviorSubject(0);
   count:number=1;
-
+  ProductQuantity!:number;
   postedProduct:any;
-
+  totalCartAmout:number=0;
 
   mensProducts:ProductsModel[]=[
     {
@@ -143,5 +143,5 @@ export class ProductsServiceService {
   getAllmenCartProducts(){
     return[...this.cartProduct]
   }
-  
+
 }

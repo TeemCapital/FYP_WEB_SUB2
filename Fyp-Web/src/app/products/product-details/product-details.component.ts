@@ -3,7 +3,7 @@ import { faHeart, faShoppingBag, faShoppingBasket } from '@fortawesome/free-soli
 import { ProductsServiceService } from './../../Services/products-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { count } from 'rxjs';
+import { count, map } from 'rxjs';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -17,6 +17,10 @@ export class ProductDetailsComponent implements OnInit {
   url!:string;
   faHeart=faHeart;
   faShoppingBag=faShoppingBag;
+  quantity:number=1;
+  disableDecrement:boolean=false;
+  totalAmount:number=0;
+  tempVariable:any;
   constructor(private router:Router,private activatedroute:ActivatedRoute,private prodServ:ProductsServiceService,private http:HttpServicesService) { }
 
   ngOnInit(): void {
@@ -41,12 +45,20 @@ export class ProductDetailsComponent implements OnInit {
   }
   AddtoCart(){
     this.cart=true
-    this.prodServ.cartProduct.push(this.product);
+    this.product.price=this.product.price * this.quantity;
+
+    this.totalAmount+=this.product.price;
+    this.tempVariable=this.totalAmount;
+    this.prodServ.totalCartAmout+=this.tempVariable;
+    this.prodServ.cartProduct.push(...this.product+this.quantity);
+    console.log(this.prodServ.cartProduct)
+    this.prodServ.ProductQuantity=this.quantity
     let count=this.prodServ.count++;
     this.prodServ.cartItemsCount$.next((count));
     setTimeout(() => {
       this.cart=false
     }, 3000);
+
   }
 
   Addtofav(){
@@ -58,10 +70,18 @@ export class ProductDetailsComponent implements OnInit {
       setTimeout(() => {
         this.fav=false
       }, 3000);
-      console.log(this.prodServ.favProduct)
     })
+}
 
-
+increment(){
+  this.quantity++
 
 }
+decrement(){
+  this.quantity++
+  if(this.quantity = 1){
+    this.disableDecrement=true
+  }
 }
+}
+

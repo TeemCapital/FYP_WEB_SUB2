@@ -15,22 +15,37 @@ export class CartComponent implements OnInit {
   faArrow=faArrowRight;
   showData:boolean=false;
   faShopping=faShoppingBag;
-
+  cartData:any;
+  Productquantity!:number;
+  finalAmount:number=0;
   constructor(private prodServ:ProductsServiceService) { }
 
   ngOnInit(): void {
     this.MenproductData= this.prodServ.getAllmenCartProducts();
-    console.log(this.productData)
+    this.Productquantity=this.prodServ.ProductQuantity
+    console.log(this.MenproductData)
 
-    if(this.MenproductData.length !=0){
+    if(this.MenproductData.length > 0){
       this.showData=true
     }
     else{
       this.showData=false
     }
+    this.finalAmount+=this.prodServ.totalCartAmout
+    console.log(this.finalAmount)
   }
 
-  delete(i:number){
+  delete(i:number,productData:any){
     this.MenproductData.splice(i,1)
+    this.prodServ.cartProduct=this.MenproductData;
+    this.finalAmount=this.finalAmount-(productData.price *  this.Productquantity)
+    this.prodServ.count=this.prodServ.count-1;
+    let itemCount=this.prodServ.count-1;
+    if(!this.MenproductData.length){
+      this.showData=false
+    }
+    this.prodServ.cartItemsCount$.next((itemCount));
+
   }
+
 }

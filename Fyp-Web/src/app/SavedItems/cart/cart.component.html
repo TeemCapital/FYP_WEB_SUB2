@@ -6,7 +6,7 @@
     </div>
 
   </div>
-  <div  class="row mt-5 rounded border p-5 shadow" *ngFor="let product of MenproductData let i=index">
+  <div  class="row mt-5 rounded border p-5 shadow" *ngFor="let product of MenproductData; let i=index">
     <div class="col-md-2" >
       <img src="{{product.image}}" class="img-fluid" alt="">
     </div>
@@ -20,14 +20,21 @@
     <div class="col-md-1 my-auto p-2">
       <h1 class="text-danger">Price/- {{product.price | currency}}</h1>
     </div>
-    <button class="btn btn-danger" (click)="delete(i)">
+
+    <button class="btn btn-danger" (click)="delete(i,product)">
       Delete Product
     </button>
   </div>
-  <div class="checkout my-5">
-    <a class="btn btn-danger mx-auto"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
-    <a class="btn btn-dark mx-3" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
+  <div class="row my-auto">
+    <div class="col-md-6 checkout my-5">
+      <a class="btn btn-danger mx-auto"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
+      <a class="btn btn-dark mx-3" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
+    </div>
+    <div class="col-md-6">
+      <h1 class="text-center my-2 bg-danger text-white rounded p-2">Your Grand Total is:- {{finalAmount | currency}}</h1>
+    </div>
   </div>
+
 </div>
 
 

@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CartComponent } from './SavedItems/cart/cart.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './SavedItems/favourite/favourite.component';
+import { PaymentsComponent } from './payments/payments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import { FavouriteComponent } from './SavedItems/favourite/favourite.component';
     PageNotFoundComponent,
     CartComponent,
     FavouriteComponent,
+    PaymentsComponent,
 
   ],
   imports: [
