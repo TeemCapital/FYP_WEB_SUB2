@@ -1,6 +1,6 @@
 import { ProductsModel, CartModel } from './../../Services/products.model';
 import { ProductsServiceService } from '../../Services/products-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {faArrowRight,faShoppingBag} from '@fortawesome/free-solid-svg-icons'
 import { Products } from '../../Interface/products';
 
@@ -9,7 +9,7 @@ import { Products } from '../../Interface/products';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit,OnDestroy {
   productData:ProductsModel[]=[];
   MenproductData:CartModel[]=[];
   faArrow=faArrowRight;
@@ -17,20 +17,22 @@ export class CartComponent implements OnInit {
   faShopping=faShoppingBag;
   cartData:any;
   Productquantity!:number;
-  finalAmount!:number;
+  finalAmount:number=0;
   constructor(private prodServ:ProductsServiceService) { }
 
   ngOnInit(): void {
     console.log(this.finalAmount,"final Amount")
     this.MenproductData= this.prodServ.getAllmenCartProducts();
     console.log(this.MenproductData,"men data")
+    this.MenproductData.forEach(element => {
+      this.finalAmount=this.finalAmount+element.totalPrice
+    });
     if(this.MenproductData.length > 0){
       this.showData=true
     }
     else{
       this.showData=false
     }
-    this.finalAmount=this.prodServ.totalCartAmount
     console.log(this.finalAmount,"After product add")
   }
 
@@ -47,5 +49,7 @@ export class CartComponent implements OnInit {
     this.prodServ.cartItemsCount$.next((itemCount));
 
   }
-
+ngOnDestroy(): void {
+    this.finalAmount=0;
+}
 }
