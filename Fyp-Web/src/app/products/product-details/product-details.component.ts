@@ -59,7 +59,7 @@ export class ProductDetailsComponent implements OnInit {
     this.product.quantity=this.quantity
     this.totalAmount= this.product.totalPrice;
 
-    this.prodServ.totalCartAmout+=this.totalAmount;
+    this.prodServ.totalCartAmount+=this.totalAmount;
     this.prodServ.ProductQuantity=this.quantity
     console.log(this.product,"Products log")
     this.prodServ.cartProduct.push(this.product);

@@ -15,7 +15,7 @@ export class ProductsServiceService {
   count:number=1;
   ProductQuantity!:number;
   postedProduct:any;
-  totalCartAmout:number=0;
+  totalCartAmount:number=0;
 
   mensProducts:ProductsModel[]=[
     {
