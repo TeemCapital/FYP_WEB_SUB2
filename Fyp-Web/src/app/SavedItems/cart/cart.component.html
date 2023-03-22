@@ -10,15 +10,19 @@
     <div class="col-md-2" >
       <img src="{{product.image}}" class="img-fluid" alt="">
     </div>
-    <div class="col-md-4 my-auto">
+    <div class="col-md-2 my-auto">
       <h5>{{product.title}}</h5>
+    </div>
+    <div class="col-md-2 text-center my-auto" >
+      <h5>Quantity</h5>
+      <div>{{product.quantity}}</div>
     </div>
     <div class="col-md-5 my-auto">
       <h6>Description</h6>
       <p><strong>{{product.description}}</strong></p>
     </div>
     <div class="col-md-1 my-auto p-2">
-      <h1 class="text-danger">Price/- {{product.price | currency}}</h1>
+      <h1 class="text-danger">Price/- {{product.totalPrice  | currency}}</h1>
     </div>
 
     <button class="btn btn-danger" (click)="delete(i,product)">

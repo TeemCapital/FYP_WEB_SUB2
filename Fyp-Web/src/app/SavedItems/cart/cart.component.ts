@@ -1,4 +1,4 @@
-import { ProductsModel } from './../../Services/products.model';
+import { ProductsModel, CartModel } from './../../Services/products.model';
 import { ProductsServiceService } from '../../Services/products-service.service';
 import { Component, OnInit } from '@angular/core';
 import {faArrowRight,faShoppingBag} from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +11,7 @@ import { Products } from '../../Interface/products';
 })
 export class CartComponent implements OnInit {
   productData:ProductsModel[]=[];
-  MenproductData:ProductsModel[]=[];
+  MenproductData:CartModel[]=[];
   faArrow=faArrowRight;
   showData:boolean=false;
   faShopping=faShoppingBag;
@@ -22,9 +22,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.MenproductData= this.prodServ.getAllmenCartProducts();
-    this.Productquantity=this.prodServ.ProductQuantity
-    console.log(this.MenproductData)
-
+    console.log(this.MenproductData,"men data")
     if(this.MenproductData.length > 0){
       this.showData=true
     }
@@ -38,7 +36,7 @@ export class CartComponent implements OnInit {
   delete(i:number,productData:any){
     this.MenproductData.splice(i,1)
     this.prodServ.cartProduct=this.MenproductData;
-    this.finalAmount=this.finalAmount-(productData.price *  this.Productquantity)
+    this.finalAmount=this.finalAmount - productData.price;
     this.prodServ.count=this.prodServ.count-1;
     let itemCount=this.prodServ.count-1;
     if(!this.MenproductData.length){
@@ -46,6 +44,7 @@ export class CartComponent implements OnInit {
     }
     this.prodServ.cartItemsCount$.next((itemCount));
 
+    console.log("final"+this.finalAmount)
   }
 
 }

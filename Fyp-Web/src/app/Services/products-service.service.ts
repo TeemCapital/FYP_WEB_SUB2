@@ -1,5 +1,5 @@
 import { Products } from './../Interface/products';
-import { ProductsModel } from './products.model';
+import { ProductsModel, CartModel } from './products.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class ProductsServiceService {
   productData:ProductsModel[]=[];
-  cartProduct:ProductsModel[]=[];
+  cartProduct:CartModel[]=[];
   favProduct:Products[]=[];
   fetchedProducts:Products[]=[];
   cartItemsCount$: BehaviorSubject<number>=new BehaviorSubject(0);
@@ -77,7 +77,7 @@ export class ProductsServiceService {
   ]
   WomensProducts:any[]=[
     {
-      id:8,
+      id:700,
       title:'Jacket8',
       description:'Jackets to buy',
       price:10 ,
@@ -85,7 +85,7 @@ export class ProductsServiceService {
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
-      id:9,
+      id:800,
       title:'Jacket9',
       description:'Jackets to buy',
       price:10 ,
@@ -93,7 +93,7 @@ export class ProductsServiceService {
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
-      id:10,
+      id:900,
       title:'Jacket10',
       description:'Jackets to buy',
       price:10 ,
@@ -101,7 +101,7 @@ export class ProductsServiceService {
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
-      id:11,
+      id:100,
       title:'Jacket11',
       description:'Jackets to buy',
       price:10 ,
@@ -109,7 +109,7 @@ export class ProductsServiceService {
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
-      id:12,
+      id:1200,
       title:'Jacket12',
       description:'Jackets to buy',
       price:10 ,
@@ -117,7 +117,7 @@ export class ProductsServiceService {
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
-      id:13,
+      id:1300,
       title:'Jacket13',
       description:'Jackets to buy',
       price:10 ,
@@ -125,7 +125,7 @@ export class ProductsServiceService {
       category:'Girls Jacket-Woolen inner ligning'
     },
     {
-      id:14,
+      id:1400,
       title:'Jacket14',
       description:'Jackets to buy',
       price:10 ,

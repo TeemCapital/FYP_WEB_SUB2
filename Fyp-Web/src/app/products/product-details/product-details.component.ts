@@ -1,3 +1,4 @@
+import { CartModel } from './../../Services/products.model';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
 import { faHeart, faShoppingBag, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { ProductsServiceService } from './../../Services/products-service.service';
@@ -10,7 +11,7 @@ import { count, map } from 'rxjs';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  product:any;
+  product!:CartModel;
   cart:boolean=false;
   fav:boolean=false;
   productid:any;
@@ -20,7 +21,7 @@ export class ProductDetailsComponent implements OnInit {
   quantity:number=1;
   disableDecrement:boolean=false;
   totalAmount:number=0;
-  tempVariable:any;
+  newPrice:any;
   constructor(private router:Router,private activatedroute:ActivatedRoute,private prodServ:ProductsServiceService,private http:HttpServicesService) { }
 
   ngOnInit(): void {
@@ -30,13 +31,21 @@ export class ProductDetailsComponent implements OnInit {
     if(this.url.includes('/men')){
       this.activatedroute.paramMap.subscribe((param)=>{
         this.productid=param.get('id')
-        this.product=this.http.products.find(x=>x.id==this.productid)
+        let data=this.http.products.find(x=>x.id==this.productid);
+        if(data){
+          this.product={...data,quantity:1,totalPrice:0}
+        }
         console.log(this.product)
       })
     }
     if(this.url.includes('/women')){
       this.activatedroute.paramMap.subscribe((param)=>{
         this.productid=param.get('id')
+        let data=this.http.products.find(x=>x.id==this.productid);
+        if(data){
+          this.product={...data,quantity:1,totalPrice:0}
+        }
+        console.log(this.product)
         this.product=this.prodServ.WomensProducts.find(x=>x.id==this.productid)
         console.log(this.product)
       })
@@ -45,14 +54,15 @@ export class ProductDetailsComponent implements OnInit {
   }
   AddtoCart(){
     this.cart=true
-    this.product.price=this.product.price * this.quantity;
+    this.product.totalPrice=this.product.price! * this.quantity;
+    // this.totalAmount=this.product.price! * this.quantity;
+    this.product.quantity=this.quantity
+    this.totalAmount= this.product.totalPrice;
 
-    this.totalAmount+=this.product.price;
-    this.tempVariable=this.totalAmount;
-    this.prodServ.totalCartAmout+=this.tempVariable;
+    this.prodServ.totalCartAmout+=this.totalAmount;
     this.prodServ.ProductQuantity=this.quantity
+    console.log(this.product,"Products log")
     this.prodServ.cartProduct.push(this.product);
-    console.log(this.prodServ.cartProduct)
     let count=this.prodServ.count++;
     this.prodServ.cartItemsCount$.next((count));
     setTimeout(() => {
@@ -62,26 +72,30 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   Addtofav(){
-    this.fav=true
-    this.activatedroute.paramMap.subscribe((param)=>{
-      this.productid=param.get('id')
-      this.product=this.prodServ.fetchedProducts.find(x=>x.id==this.productid)
-      this.prodServ.favProduct=this.product;
-      setTimeout(() => {
-        this.fav=false
-      }, 3000);
-    })
+    // this.fav=true
+    // this.activatedroute.paramMap.subscribe((param)=>{
+    //   this.productid=param.get('id')
+    //   this.product=this.prodServ.fetchedProducts.find(x=>x.id==this.productid)
+    //   this.prodServ.favProduct=this.product;
+    //   setTimeout(() => {
+    //     this.fav=false
+    //   }, 3000);
+    // })
 }
 
 increment(){
-  this.quantity++
-
-}
-decrement(){
-  this.quantity++
-  if(this.quantity = 1){
+  this.quantity=this.quantity+1
+  // this.product.quantity=this.product.quantity!+1;
+  console.log(typeof(this.product.quantity),"type")
+  console.log(this.quantity)
+  if(this.quantity > 1){
     this.disableDecrement=true
   }
+}
+decrement(){
+  this.quantity=this.quantity-1
+  this.product.quantity=this.product.quantity!-1;
+
 }
 }
 
