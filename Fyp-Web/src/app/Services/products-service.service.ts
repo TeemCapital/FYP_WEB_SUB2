@@ -16,6 +16,8 @@ export class ProductsServiceService {
   ProductQuantity!:number;
   postedProduct:any;
   totalCartAmount:number=0;
+  checkoutData:CartModel[]=[];
+  finalCheckOutPrice!:number;
 
   mensProducts:ProductsModel[]=[
     {

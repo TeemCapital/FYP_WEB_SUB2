@@ -41,11 +41,11 @@ export class ProductDetailsComponent implements OnInit {
     if(this.url.includes('/women')){
       this.activatedroute.paramMap.subscribe((param)=>{
         this.productid=param.get('id')
-        let data=this.http.products.find(x=>x.id==this.productid);
-        if(data){
-          this.product={...data,quantity:1,totalPrice:0}
-        }
-        console.log(this.product)
+        // let data=this.http.products.find(x=>x.id==this.productid);
+        // if(data){
+        //   this.product={...data,quantity:1,totalPrice:0}
+        // }
+        // console.log(this.product)
         this.product=this.prodServ.WomensProducts.find(x=>x.id==this.productid)
         console.log(this.product)
       })
@@ -60,7 +60,9 @@ export class ProductDetailsComponent implements OnInit {
     this.totalAmount= this.product.totalPrice;
 
     this.prodServ.totalCartAmount+=this.totalAmount;
-    this.prodServ.ProductQuantity=this.quantity
+
+    this.prodServ.ProductQuantity=this.quantity;
+
     console.log(this.product,"Products log")
     this.prodServ.cartProduct.push(this.product);
     let count=this.prodServ.count++;
@@ -68,9 +70,7 @@ export class ProductDetailsComponent implements OnInit {
     setTimeout(() => {
       this.cart=false
     }, 3000);
-
   }
-
   Addtofav(){
     // this.fav=true
     // this.activatedroute.paramMap.subscribe((param)=>{

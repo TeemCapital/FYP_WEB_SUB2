@@ -1,4 +1,7 @@
 
+<div class="alert alert-danger mt-2" *ngIf="checkOutNotification==true" role="alert">
+  You are being redirected to checkout
+</div>
 <div class="container mt-5" *ngIf="showData==true">
   <div class="row mt-5 bg-dark p-5">
     <div class="col-md-12 p-3 text-center rounded">
@@ -31,7 +34,7 @@
   </div>
   <div class="row my-auto">
     <div class="col-md-6 checkout my-5">
-      <a class="btn btn-danger mx-auto"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
+      <a class="btn btn-danger mx-auto" (click)="checkOut()"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
       <a class="btn btn-dark mx-3" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
     </div>
     <div class="col-md-6">

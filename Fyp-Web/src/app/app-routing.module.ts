@@ -1,3 +1,4 @@
+import { PaymentsComponent } from './payments/payments.component';
 import { CartComponent } from './SavedItems/cart/cart.component';
 import { SignupComponent } from './Accounts/Admin/Signup/signup.component';
 import { LoginComponent } from './Accounts/Admin/login/login.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'home', component:HomeComponent},
   {path:'cart',component:CartComponent},
   {path:'favourite',component:FavouriteComponent},
+  {path:'payment',component:PaymentsComponent},
   { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
   { path: 'accounts', loadChildren: () => import('./Accounts/accounts.module').then(m => m.AccountsModule) },
   { path: 'dashboard', loadChildren: () => import('./Dashboard/dashboard.module').then(m => m.DashboardModule) },

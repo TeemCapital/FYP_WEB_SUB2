@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductsModel, CartModel } from './../../Services/products.model';
 import { ProductsServiceService } from '../../Services/products-service.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -18,7 +19,9 @@ export class CartComponent implements OnInit,OnDestroy {
   cartData:any;
   Productquantity!:number;
   finalAmount:number=0;
-  constructor(private prodServ:ProductsServiceService) { }
+
+  checkOutNotification:boolean=false;
+  constructor(private prodServ:ProductsServiceService,private router:Router) { }
 
   ngOnInit(): void {
     console.log(this.finalAmount,"final Amount")
@@ -48,6 +51,17 @@ export class CartComponent implements OnInit,OnDestroy {
 
     this.prodServ.cartItemsCount$.next((itemCount));
 
+  }
+
+  checkOut(){
+    this.prodServ.checkoutData=this.MenproductData;
+    console.log(this.prodServ.checkoutData,"checkoutData")
+    this.checkOutNotification=true
+    setTimeout(() => {
+      this.checkOutNotification=false;
+    }, 2000);
+    this.prodServ.finalCheckOutPrice=this.finalAmount;
+    this.router.navigate(["/payment"])
   }
 ngOnDestroy(): void {
     this.finalAmount=0;
