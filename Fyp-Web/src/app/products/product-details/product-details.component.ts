@@ -95,6 +95,9 @@ increment(){
 decrement(){
   this.quantity=this.quantity-1
   this.product.quantity=this.product.quantity!-1;
+  if(this.quantity < 2){
+    this.disableDecrement=false;
+  }
 
 }
 }
