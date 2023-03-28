@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { ProductsModule } from './products/products.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,14 +20,15 @@ import { PaymentsComponent } from './payments/payments.component';
     CartComponent,
     FavouriteComponent,
     PaymentsComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     LoadingBarRouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

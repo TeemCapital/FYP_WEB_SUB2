@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   products:any[]=[];
   test:any;
   url !:string;
+  searchKey:string ="";
   constructor(private router:Router,private productSer:ProductsServiceService,private httpServe:HttpServicesService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -25,6 +26,10 @@ export class ProductsComponent implements OnInit {
       this.products=this.productSer.getAllWomensProducts()
       console.log(this.products)
     }
+
+    this.productSer.search.subscribe((val:any)=>{
+      this.searchKey = val;
+    })
   }
 
   getAllProducts():any{
@@ -34,4 +39,5 @@ export class ProductsComponent implements OnInit {
       }
     )
     }
+
 }

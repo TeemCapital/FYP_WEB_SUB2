@@ -17,4 +17,5 @@ export class CartModel{
   category?:string
   quantity?:number;
   totalPrice?:any
+  rating?:any;
 }

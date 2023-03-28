@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row ">
-    <div class="col-md-10 mx-auto">
+    <div class="col-md-6 mx-auto table-responsive">
       <table class="table table-dark table-striped rounded shadow" >
         <thead>
           <tr>
@@ -31,12 +31,12 @@
     </div>
 
   </div>
-  <div class="row text-center">
-    <div class="col-md-6">
-      <a class="btn btn-danger mx-auto"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
-      <a class="btn btn-dark mx-3" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
+  <div class="row ">
+    <div class="col-md-6 mx-auto ">
+      <a class="btn btn-danger mx-auto "><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
+      <a class="btn btn-dark mx-md-3 mx-sm-1" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mx-auto mt-4 mt-md-0">
       <span class="bg-danger text-white rounded p-3 ">Total:{{finalAmount | currency}}</span>
     </div>
   </div>

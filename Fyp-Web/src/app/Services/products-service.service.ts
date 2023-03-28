@@ -19,6 +19,8 @@ export class ProductsServiceService {
   checkoutData:CartModel[]=[];
   finalCheckOutPrice!:number;
 
+  public search = new BehaviorSubject<string>("");
+
   mensProducts:ProductsModel[]=[
     {
       id:1,

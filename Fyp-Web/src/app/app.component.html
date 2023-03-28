@@ -24,21 +24,21 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="mx-auto my-3 d-lg-none d-sm-block d-xs-block">
+      <div class="mx-auto my-3  d-sm-block d-xs-block">
         <div class="input-group">
           <span class="border-dark input-group-text bg-dark text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" class="form-control border-dark" style="color:#7a7a7a">
+          <input type="text" class="form-control border-dark" [(ngModel)]="searchTerm" (keyup)="search($event)" style="color:#7a7a7a">
           <button class="btn btn-dark text-white">Search</button>
         </div>
       </div>
       <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-        <div class="ms-auto d-none d-lg-block">
+        <!-- <div class="ms-auto  d-lg-block">
           <div class="input-group">
             <span class="border-dark input-group-text bg-dark text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <input type="text" class="form-control border-dark" style="color:#7a7a7a">
-            <button class="btn btn-dark text-white">Search</button>
+            <input type="text" class="form-control border-dark"  style="color:#7a7a7a">
+            <button class="btn btn-dark text-white">Searchs</button>
           </div>
-        </div>
+        </div> -->
         <ul class="navbar-nav ms-auto ">
           <li class="nav-item">
             <a class="nav-link mx-2 text-uppercase active" aria-current="page" href="#">Offers</a>

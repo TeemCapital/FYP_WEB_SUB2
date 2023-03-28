@@ -18,6 +18,8 @@ export class AppComponent {
   faHeart=faHeart;
   title = 'Fyp-Web';
   cartCounter!:number;
+
+  public searchTerm !: string;
   constructor(private prodServ:ProductsServiceService,private httpServe:HttpServicesService){
     this.prodServ.cartItemsCount$.subscribe((res)=>{
     this.cartCounter=res;
@@ -25,5 +27,11 @@ export class AppComponent {
     console.log(this.cartCounter)
 
     this.httpServe.GetProducts().subscribe()
+
+  }
+  search(event:any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    console.log(this.searchTerm);
+    this.prodServ.search.next(this.searchTerm);
   }
 }

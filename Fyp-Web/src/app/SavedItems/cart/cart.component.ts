@@ -21,6 +21,7 @@ export class CartComponent implements OnInit,OnDestroy {
   finalAmount:number=0;
 
   checkOutNotification:boolean=false;
+
   constructor(private prodServ:ProductsServiceService,private router:Router) { }
 
   ngOnInit(): void {
@@ -59,9 +60,10 @@ export class CartComponent implements OnInit,OnDestroy {
     this.checkOutNotification=true
     setTimeout(() => {
       this.checkOutNotification=false;
+      this.prodServ.finalCheckOutPrice=this.finalAmount;
+      this.router.navigate(["/payment"])
     }, 2000);
-    this.prodServ.finalCheckOutPrice=this.finalAmount;
-    this.router.navigate(["/payment"])
+
   }
 ngOnDestroy(): void {
     this.finalAmount=0;
