@@ -4,6 +4,7 @@ export class ProductsModel{
   description!:string
   price!:number
   image!:string
+  quantity?:any
   category!:string
   // quantity?:number;
 }

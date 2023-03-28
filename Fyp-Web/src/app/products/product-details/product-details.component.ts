@@ -1,6 +1,6 @@
 import { CartModel } from './../../Services/products.model';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
-import { faHeart, faShoppingBag, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faShoppingBag, faShoppingBasket,faStar } from '@fortawesome/free-solid-svg-icons';
 import { ProductsServiceService } from './../../Services/products-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   url!:string;
   faHeart=faHeart;
   faShoppingBag=faShoppingBag;
+  faStar=faStar;
   quantity:number=1;
   disableDecrement:boolean=false;
   totalAmount:number=0;
@@ -53,6 +54,7 @@ export class ProductDetailsComponent implements OnInit {
 
   }
   AddtoCart(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.cart=true
     this.product.totalPrice=this.product.price! * this.quantity;
     // this.totalAmount=this.product.price! * this.quantity;

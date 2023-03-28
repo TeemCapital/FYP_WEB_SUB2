@@ -16,7 +16,8 @@ import { FilterPipe } from '../shared/filter.pipe';
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class ProductsModule { }

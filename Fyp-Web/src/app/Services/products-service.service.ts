@@ -84,6 +84,9 @@ export class ProductsServiceService {
       id:700,
       title:'Jacket8',
       description:'Jackets to buy',
+      rating:{
+        rate:5
+      },
       price:10 ,
       image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
@@ -92,6 +95,9 @@ export class ProductsServiceService {
       id:800,
       title:'Jacket9',
       description:'Jackets to buy',
+            rating:{
+        rate:5
+      },
       price:10 ,
       image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
@@ -100,6 +106,9 @@ export class ProductsServiceService {
       id:900,
       title:'Jacket10',
       description:'Jackets to buy',
+            rating:{
+        rate:5
+      },
       price:10 ,
       image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
@@ -108,6 +117,9 @@ export class ProductsServiceService {
       id:100,
       title:'Jacket11',
       description:'Jackets to buy',
+            rating:{
+        rate:5
+      },
       price:10 ,
       image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
@@ -116,6 +128,9 @@ export class ProductsServiceService {
       id:1200,
       title:'Jacket12',
       description:'Jackets to buy',
+            rating:{
+        rate:5
+      },
       price:10 ,
       image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
@@ -124,6 +139,9 @@ export class ProductsServiceService {
       id:1300,
       title:'Jacket13',
       description:'Jackets to buy',
+            rating:{
+        rate:5
+      },
       price:10 ,
       image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'
@@ -132,6 +150,9 @@ export class ProductsServiceService {
       id:1400,
       title:'Jacket14',
       description:'Jackets to buy',
+            rating:{
+        rate:5
+      },
       price:10 ,
       image:'assets/images/girls_jack.jpg',
       category:'Girls Jacket-Woolen inner ligning'

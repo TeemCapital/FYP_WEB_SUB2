@@ -53,10 +53,10 @@ export class CartComponent implements OnInit,OnDestroy {
     this.prodServ.cartItemsCount$.next((itemCount));
 
   }
-
   checkOut(){
     this.prodServ.checkoutData=this.MenproductData;
     console.log(this.prodServ.checkoutData,"checkoutData")
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.checkOutNotification=true
     setTimeout(() => {
       this.checkOutNotification=false;
