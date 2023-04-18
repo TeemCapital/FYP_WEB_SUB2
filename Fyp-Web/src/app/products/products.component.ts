@@ -4,6 +4,7 @@ import { ProductsModel } from './../Services/products.model';
 import { Component, OnInit } from '@angular/core';
 import { ProductsServiceService } from '../Services/products-service.service';
 import { Products } from '../Interface/products';
+import { authService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -15,9 +16,12 @@ export class ProductsComponent implements OnInit {
   test:any;
   url !:string;
   searchKey:string ="";
-  constructor(private router:Router,private productSer:ProductsServiceService,private httpServe:HttpServicesService,private activatedRoute:ActivatedRoute) { }
+  constructor(private authSer:authService,private router:Router,private productSer:ProductsServiceService,private httpServe:HttpServicesService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log(this.authSer.loggedIn)
+
+
     this.url=this.router.url;
     if(this.url.includes("/men")){
       this.getAllProducts();
@@ -39,5 +43,6 @@ export class ProductsComponent implements OnInit {
       }
     )
     }
+
 
 }

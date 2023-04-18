@@ -6,6 +6,7 @@ export class ProductsModel{
   image!:string
   quantity?:any
   category!:string
+  imagepath?:string
   // quantity?:number;
 }
 
@@ -19,4 +20,9 @@ export class CartModel{
   quantity?:number;
   totalPrice?:any
   rating?:any;
+}
+export class BuyerModel{
+  id?:number;
+  name!:string;
+  email!:string
 }

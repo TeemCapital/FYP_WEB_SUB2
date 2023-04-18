@@ -8,6 +8,7 @@ import { Products } from '../Interface/products';
 export class HttpServicesService {
 
   private apiUrl='https://fakestoreapi.com';
+  public testUrl='http://127.0.0.1:8000/api';
   products:Products[]=[];
   constructor(private http:HttpClient) { }
   GetProducts():Observable<Products[]>{

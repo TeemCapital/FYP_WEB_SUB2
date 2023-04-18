@@ -5,11 +5,9 @@
   <div class="row">
     <div class="col-md-8 mx-auto shadow">
       <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
-        <label class="form-label"
-          ><b>Product title</b
-          ><small style="color: red; font-size: 10px; margin-left: 5px"
-            >(Required*)</small
-          ></label
+        <label class="form-label">
+          <b>Product title</b>
+          <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label
         >
         <input
           ngModel
@@ -51,23 +49,21 @@
           class="form-control"
         />
         <div class="invalid-feedback">This isnt a valid response</div>
-        <label class="form-label"
-          ><b>category</b
-          ><small style="color: red; font-size: 10px; margin-left: 5px"
-            >(Required*)</small
-          ></label
-        >
-        <input required ngModel name="id" type="text" class="form-control" />
+        <label class="form-label">
+          <b>category</b>
+          <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label>
+        <select class="form-select" [(ngModel)]="selectedCategory" name="category" aria-label="Default select example">
+          <option *ngFor="let category of category" [value]="category">{{category}}</option>
+        </select>
+
         <div class="invalid-feedback">This isnt a valid response</div>
         <label>
           <b> Enter Product Image Url</b>
           <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small>
         </label>
-        <input required ngModel name="image" type="text" class="form-control" />
+        <input required ngModel name="imaegpath" type="file" accept="image/*" (change)="onFileSelected($event)" class="form-control" />
         <div class="invalid-feedback">This isnt a valid response</div>
-        <Button class="btn btn-dark my-2" [disabled]="!addProduct.valid">
-          Create Product
-          </Button>
+        <Button class="btn btn-dark my-2" >Create Product</Button>
       </form>
     </div>
   </div>

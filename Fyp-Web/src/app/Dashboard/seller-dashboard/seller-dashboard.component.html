@@ -12,16 +12,17 @@
     </div>
   </div>
 </div>
-<div class="container mt-5" *ngFor="let product of showProduct">
-  <div class="row mt-5 border rounded p-3 shadow">
-    <div class="col-md-6">
-      <img src="{{product.image}}" class="img-fluid"  alt="">
+<div class="container mt-5" >
+  <a routerLink="../manage" class="btn btn-primary">Create a new Product</a>
+  <div class="row mt-5 border rounded p-3 shadow"  *ngFor="let product of showProduct;let i as index">
+    <div class="col-md-6" >
+      <img src={{product.imagepath}}   class="img-fluid"  alt="">
     </div>
     <div class="col-md-6  my-auto">
       <h3 class="text-white bg-dark rounded p-3"><strong>{{product.title}}</strong></h3>
       <p><b>Description: {{product.description}}</b></p>
       <h5 class="text-danger">Price: {{product.price | currency}}</h5>
-      <button class="btn btn-success" (click)="postProduct()">Post Product</button>
+      <button class="btn btn-success" (click)="postProduct(product,i)">Post Product</button>
     </div>
   </div>
 </div>

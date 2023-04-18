@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { HttpServicesService } from './../../Services/http-services.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Products } from 'src/app/Interface/products';
 import { DashboardService } from 'src/app/Services/dashboard.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-products',
@@ -12,14 +14,37 @@ import { DashboardService } from 'src/app/Services/dashboard.service';
 export class ManageProductsComponent implements OnInit {
   Product:any;
   value:any[]=[]
-  constructor(private ProdServ:DashboardService,private route:Router,private http:HttpServicesService) { }
+  category = ['Men', 'Women', 'Kids'];
+  selectedCategory!: string;
+
+
+  selectedImage!:File;
+  constructor(private ProdServ:DashboardService,private route:Router,private http:HttpServicesService,private httpClient:HttpClient) { }
 
   ngOnInit(): void {
   }
+
+
+  onFileSelected(event:any) {
+    this.selectedImage=<File>event.target.files[0]
+  }
+
+
   submit(data:any){
-    this.Product={...data,id:this.http.products.length+5}
-    this.ProdServ.CreatedProduct.push(this.Product)
-    this.route.navigate(['dashboard/dashboard'])
+    const formData=new FormData();
+    formData.append('description',data.description),
+    formData.append('title',data.title),
+    formData.append('price',data.price),
+    formData.append('category',this.selectedCategory),
+    formData.append('image',this.selectedImage)
+    console.log(formData)
+    this.httpClient.post<any>(`${this.http.testUrl}/add`,formData).subscribe(
+      (res)=>{
+        console.log(res)
+      }
+    );
+    // this.ProdServ.CreatedProduct.push(this.Product)
+    // this.route.navigate(['dashboard/dashboard'])
   }
 
 }

@@ -1,4 +1,5 @@
 export interface Products {
+imagepath: any;
   id ?:number,
   title:string,
   price:number,

@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="alert alert-danger mt-2" *ngIf="showNoti==true" role="alert">
+    Email Already exists,either add a different email or login with the current one.
+  </div>
   <div class="row">
     <div class="col-md-6">
       <img src="assets/images/user-signup.png" class="img-fluid" alt="">
@@ -6,19 +9,24 @@
     <div class="col-md-6 my-auto shadow-lg rounded p-3" style="background-color: rgb(253, 250, 250);">
       <h2><strong>NEW TO THE STORE?</strong></h2>
       <h5><strong>CREATE YOUR ACCOUNT</strong></h5>
-      <form action="">
+      <form #registerationForm="ngForm" (ngSubmit)="submit( registerationForm.value)">
         <label for="email" class="form-label">EMAIL:</label>
         <div class="input-group">
           <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
-          <input placeholder="@xyz.com" type="email" class="form-control">
+          <input required ngModel placeholder="@xyz.com" name="email" type="email" class="form-control">
+        </div>
+        <label for="name" class="form-label">Username:</label>
+        <div class="input-group">
+          <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
+          <input ngModel placeholder="username" name="name" type="text" class="form-control">
         </div>
         <label for="password" class="form-label">PASSWORD:</label>
         <div class="input-group">
           <span class="input-group-text"><fa-icon [icon]="faKey"></fa-icon></span>
-          <input type="password" class="form-control">
+          <input ngModel required name="password" type="password" class="form-control">
         </div>
         <p>ALREADY HAVE AN ACCOUNT?<a routerLink="accounts/login" style="cursor: pointer;"><b> LOGIN</b></a></p>
-        <button class="btn btn-dark"><a>Login</a></button>
+        <button class="btn btn-dark" type="submit" [disabled]="!registerationForm.valid"><a>Signup</a></button>
       </form>
 
     </div>

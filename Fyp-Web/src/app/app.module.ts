@@ -1,3 +1,4 @@
+import { authService } from './Services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { ProductsModule } from './products/products.module';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { CartComponent } from './SavedItems/cart/cart.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './SavedItems/favourite/favourite.component';
 import { PaymentsComponent } from './payments/payments.component';
+
 @NgModule({
   declarations: [
     AppComponent,
