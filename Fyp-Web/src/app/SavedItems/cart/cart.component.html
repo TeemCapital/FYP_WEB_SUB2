@@ -2,7 +2,7 @@
 <div class="alert alert-danger mt-2" *ngIf="checkOutNotification==true" role="alert">
   You are being redirected to checkout
 </div>
-<div class="container mt-5" *ngIf="showData==true">
+<div class="container mt-5" *ngIf="MenproductData.length > 0">
   <div class="row mt-5 bg-dark p-5">
     <div class="col-md-12 p-3 text-center rounded">
         <h1 class="text-white"><strong>YOUR CART</strong></h1>
@@ -45,7 +45,7 @@
 </div>
 
 
-<div class="container" *ngIf="showData==false">
+<div class="container" *ngIf="!MenproductData.length">
   <div class="row">
     <div class="col-md-6 text-center my-auto ">
       <h4 class="bold">YOUR CART IS CURRENTLY EMPTY!</h4>

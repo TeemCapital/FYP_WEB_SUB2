@@ -48,7 +48,6 @@ export class ManageProductsComponent implements OnInit {
     setTimeout(() => {
       this.showNotification=false;
       this.route.navigate(['dashboard/dashboard'])
-
     }, 2000);
   }
 

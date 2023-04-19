@@ -13,7 +13,6 @@ import { Products } from 'src/app/Interface/products';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  product:CartModel={};
   cart:boolean=false;
   fav:boolean=false;
   productid:any;
@@ -29,9 +28,6 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
-  // these are test vars
-  finalPrice!:number;
-
   products:Products[]=[];
 
   constructor(private router:Router,private activatedroute:ActivatedRoute,private prodServ:ProductsServiceService,private http:HttpClient,private httpServ:HttpServicesService) { }
@@ -44,21 +40,14 @@ export class ProductDetailsComponent implements OnInit {
           (res)=>{this.products.push(res)}
           )
           console.log(this.products)
-
       })
   }
   AddtoCart(data:any){
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.cart=true
-    this.finalPrice= data.price * this.quantity
-    console.log(this.finalPrice)
     this.products[0].quantity=this.quantity;
-    this.totalAmount=this.finalPrice;
-    this.products[0].totalPrice=this.totalAmount;
-    this.prodServ.totalCartAmount+=this.totalAmount;
-    this.prodServ.ProductQuantity=this.quantity;
-    console.log(this.product,"Products log")
-    this.prodServ.cartProduct.push(...this.products);
+    this.http.post<any>(`${this.httpServ.testUrl}/cart`,this.products[0]).subscribe((res)=>(console
+      .log(res)))
     console.log(this.prodServ.cartProduct)
     let count=this.prodServ.count++;
     this.prodServ.cartItemsCount$.next((count));

@@ -21,64 +21,7 @@ export class ProductsServiceService {
 
   public search = new BehaviorSubject<string>("");
 
-  mensProducts:ProductsModel[]=[
-    {
-      id:1,
-      title:'Jacket 1',
-      description:'Jackets to buy',
-      price:10 ,
-      image:'assets/images/home_ban.jpg',
-      category:'Mens Biker Jacket with inner-ligning'
-    },
-    {
-      id:2,
-      title:'Jacket 2',
-      description:'Jackets to buy',
-      price:10 ,
-      image:'assets/images/home_ban.jpg',
-      category:'Mens Biker Jacket with inner-ligning'
-    },
-    {
-      id:3,
-      title:'Jacket 3',
-      description:'Jackets to buy',
-      price:10 ,
-      image:'assets/images/home_ban.jpg',
-      category:'Mens Biker Jacket with inner-ligning'
-    },
-    {
-      id:4,
-      title:'Jacket 4',
-      description:'Jackets to buy',
-      price:10 ,
-      image:'assets/images/home_ban.jpg',
-      category:'Mens Biker Jacket with inner-ligning'
-    },
-    {
-      id:5,
-      title:'Jacket 5',
-      description:'Jackets to buy',
-      price:10 ,
-      image:'assets/images/home_ban.jpg',
-      category:'Mens Biker Jacket with inner-ligning'
-    },
-    {
-      id:6,
-      title:'Jacket 6',
-      description:'Jackets to buy',
-      price:10 ,
-      image:'assets/images/home_ban.jpg',
-      category:'Mens Biker Jacket with inner-ligning'
-    },
-    {
-      id:7,
-      title:'Jacket 7',
-      description:'Jackets to buy',
-      price:10 ,
-      image:'assets/images/home_ban.jpg',
-      category:'Mens Biker Jacket with inner-ligning'
-    }
-  ]
+
   WomensProducts:any[]=[
     {
       id:700,
@@ -159,9 +102,6 @@ export class ProductsServiceService {
     }
   ]
 
-  getAllMensProducts(){
-    return[...this.mensProducts]
-  }
   getAllWomensProducts(){
     return[...this.WomensProducts]
   }

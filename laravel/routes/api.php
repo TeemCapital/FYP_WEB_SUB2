@@ -27,4 +27,6 @@ Route::get('show',[ProductController::class,'show']);
 Route::get('login',[userController::class,'login']);
 Route::post('register',[userController::class,'register']);
 Route::get('show/{id}',[ProductController::class,'showDetail']);
-Route::get('cart',[CartController::class,'cart']);
+Route::post('cart',[CartController::class,'cart']);
+Route::get('showCart',[CartController::class,'showCart']);
+Route::delete('delete/{id}',[CartController::class,'deleteItem']);
