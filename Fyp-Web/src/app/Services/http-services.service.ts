@@ -9,17 +9,17 @@ export class HttpServicesService {
 
   private apiUrl='https://fakestoreapi.com';
   public testUrl='http://127.0.0.1:8000/api';
-  products:Products[]=[];
+  products!:Products[];
   constructor(private http:HttpClient) { }
-  GetProducts():Observable<Products[]>{
-    if(this.products.length){
-      return of(this.products);
-    }
-    return this.http.get<Products[]>(`${this.apiUrl}/products`).pipe(
-     map(res=>{
-      this.products=res;
-      return res;
-     })
-    )
-  }
+  // GetProducts():Observable<Products[]>{
+  //   if(this.products.length){
+  //     return of(this.products);
+  //   }
+  //   return this.http.get<Products[]>(`${this.testUrl}/show`).pipe(
+  //    map(res=>{
+  //     // this.products=res.products;
+  //     return res;
+  //    })
+  //   )
+  // }
 }

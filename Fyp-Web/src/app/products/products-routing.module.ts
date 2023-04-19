@@ -6,7 +6,7 @@ import { productGuardService } from '../guards/products-guard.service';
 
 const routes: Routes = [
   { path: 'men', component: ProductsComponent },
-  {path:'men/:id',component:ProductDetailsComponent,canActivate:[productGuardService]},
+  {path:'men/:id',component:ProductDetailsComponent},
   {path:'women',component:ProductsComponent},
   {path:'women/:id',component:ProductDetailsComponent,canActivate:[productGuardService]}
 ];

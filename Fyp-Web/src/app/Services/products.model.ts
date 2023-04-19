@@ -4,7 +4,7 @@ export class ProductsModel{
   description!:string
   price!:number
   image!:string
-  quantity?:any
+  quantity?:number
   category!:string
   imagepath?:string
   // quantity?:number;
@@ -15,6 +15,7 @@ export class CartModel{
   title?:string
   description?:string
   price?:number
+  imagepath?:string
   image?:string
   category?:string
   quantity?:number;

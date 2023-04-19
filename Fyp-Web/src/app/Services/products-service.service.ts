@@ -8,7 +8,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class ProductsServiceService {
   productData:ProductsModel[]=[];
-  cartProduct:CartModel[]=[];
+  cartProduct:Products[]=[];
   favProduct:Products[]=[];
   fetchedProducts:Products[]=[];
   cartItemsCount$: BehaviorSubject<number>=new BehaviorSubject(0);

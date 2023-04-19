@@ -29,7 +29,7 @@ export class AppComponent implements OnInit{
     });
     console.log(this.cartCounter)
 
-    this.httpServe.GetProducts().subscribe()
+    // this.httpServe.GetProducts().subscribe()
 
   }
   ngOnInit(): void {

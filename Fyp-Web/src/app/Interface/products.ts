@@ -1,5 +1,4 @@
 export interface Products {
-imagepath: any;
   id ?:number,
   title:string,
   price:number,
@@ -7,4 +6,6 @@ imagepath: any;
   description:string,
   quantity?:number;
   image:string
+  imagepath:string;
+  totalPrice?:number;
 }

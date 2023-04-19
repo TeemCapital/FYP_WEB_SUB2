@@ -83,4 +83,11 @@ class ProductController extends Controller
         })->select('products.*')->get();
         return response()->json(['products'=>$products]);
     }
+    public function showDetail($id){
+         $product= product::find($id);
+        if(!$product){
+            return response()->json(["error"=>"Item not found"]);
+        }
+        return response()->json($product);
+    }
 }

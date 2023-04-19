@@ -28,12 +28,12 @@ export class UserLoginComponent implements OnInit {
         alert(error)
       },
       ()=>{
-        // document.body.scrollTop = document.documentElement.scrollTop = 0;
-        // this.authSer.logIn()
-        // this.loginNotification=true;
-        // setTimeout(() => {
-        //   this.router.navigate(['/home'])
-        // }, 2000);
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        this.authSer.logIn()
+        this.loginNotification=true;
+        setTimeout(() => {
+          this.router.navigate(['/home'])
+        }, 2000);
       }
     )
   }

@@ -42,7 +42,7 @@ export class CartComponent implements OnInit,OnDestroy {
 
   delete(i:number,productData:any){
     this.MenproductData.splice(i,1)
-    this.prodServ.cartProduct=this.MenproductData;
+    // this.prodServ.cartProduct=this.MenproductData;
     this.finalAmount=this.finalAmount - productData.totalPrice;
     this.prodServ.count=this.prodServ.count-1;
     let itemCount=this.prodServ.count-1;

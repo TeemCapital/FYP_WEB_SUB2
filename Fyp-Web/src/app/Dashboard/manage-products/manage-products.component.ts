@@ -16,7 +16,7 @@ export class ManageProductsComponent implements OnInit {
   value:any[]=[]
   category = ['Men', 'Women', 'Kids'];
   selectedCategory!: string;
-
+  showNotification=false;
 
   selectedImage!:File;
   constructor(private ProdServ:DashboardService,private route:Router,private http:HttpServicesService,private httpClient:HttpClient) { }
@@ -43,8 +43,13 @@ export class ManageProductsComponent implements OnInit {
         console.log(res)
       }
     );
-    // this.ProdServ.CreatedProduct.push(this.Product)
-    // this.route.navigate(['dashboard/dashboard'])
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    this.showNotification=true;
+    setTimeout(() => {
+      this.showNotification=false;
+      this.route.navigate(['dashboard/dashboard'])
+
+    }, 2000);
   }
 
 }

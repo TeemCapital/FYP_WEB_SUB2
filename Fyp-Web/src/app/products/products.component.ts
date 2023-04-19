@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsServiceService } from '../Services/products-service.service';
 import { Products } from '../Interface/products';
 import { authService } from '../Services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
@@ -12,11 +13,11 @@ import { authService } from '../Services/auth.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products:any[]=[];
+  products!:Products[];
   test:any;
   url !:string;
   searchKey:string ="";
-  constructor(private authSer:authService,private router:Router,private productSer:ProductsServiceService,private httpServe:HttpServicesService,private activatedRoute:ActivatedRoute) { }
+  constructor(private authSer:authService,private router:Router,private productSer:ProductsServiceService,private httpServe:HttpServicesService,private activatedRoute:ActivatedRoute,private http:HttpClient) { }
 
   ngOnInit(): void {
     console.log(this.authSer.loggedIn)
@@ -24,7 +25,12 @@ export class ProductsComponent implements OnInit {
 
     this.url=this.router.url;
     if(this.url.includes("/men")){
-      this.getAllProducts();
+      this.http.get<any>(`${this.httpServe.testUrl}/show`).subscribe(
+        (res)=>{
+          this.products=(res.products)
+          
+        }
+        )
     }
     if(this.url.includes('/women')){
       this.products=this.productSer.getAllWomensProducts()
@@ -36,13 +42,13 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  getAllProducts():any{
-    this.httpServe.GetProducts().subscribe(
-      (resp)=>{
-        this.products=resp;
-      }
-    )
-    }
+  // getAllProducts():any{
+  //   this.httpServe.GetProducts().subscribe(
+  //     (resp)=>{
+  //       this.products=resp;
+  //     }
+  //   )
+  //   }
 
 
 }
