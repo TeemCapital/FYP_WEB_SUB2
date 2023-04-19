@@ -28,14 +28,14 @@ export class CartComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     console.log(this.finalAmount,"final Amount")
     this.http.get<any>(`${this.httpServ.testUrl}/showCart`).subscribe(
-      (res)=>{this.MenproductData.push(...res); console.log(this.MenproductData) }
-
+        (res)=>{this.MenproductData.push(...res)
+        console.log(this.MenproductData)
+        this.MenproductData.forEach(element => {
+        this.finalAmount=this.finalAmount+element.totalPrice;
+      }); }
     )
-    // this.MenproductData= this.prodServ.getAllmenCartProducts();
     console.log(this.MenproductData.length)
-    this.MenproductData.forEach(element => {
-      this.finalAmount=this.finalAmount+element.totalPrice
-    });
+
     console.log(this.finalAmount,"After product add")
   }
 
