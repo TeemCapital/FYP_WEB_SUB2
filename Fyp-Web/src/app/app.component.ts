@@ -5,6 +5,7 @@ import { ProductsServiceService } from './Services/products-service.service';
 import { Component, OnInit } from '@angular/core';
 import {faFacebook,faTwitter,faInstagram,faTelegram} from '@fortawesome/free-brands-svg-icons'
 import {faShoppingBasket,faUser,faHeart} from '@fortawesome/free-solid-svg-icons'
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit{
   login:BehaviorSubject<boolean> =new BehaviorSubject(false);
 
   public searchTerm !: string;
-  constructor(private prodServ:ProductsServiceService,private httpServe:HttpServicesService,private authSer:authService){
+  constructor(private prodServ:ProductsServiceService,private httpServe:HttpServicesService,private authSer:authService,private http:HttpClient){
     this.prodServ.cartItemsCount$.subscribe((res)=>{
     this.cartCounter=res;
     });
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit(): void {
+    this.http.get<any>(`${this.httpServe.testUrl}`)
   }
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;

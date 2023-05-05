@@ -2,9 +2,11 @@ import { DashboardService } from './../../Services/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductsServiceService } from 'src/app/Services/products-service.service';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Products } from 'src/app/Interface/products';
+import {faSmile} from '@fortawesome/free-regular-svg-icons'
+import { faSlack } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -16,15 +18,20 @@ export class SellerDashboardComponent implements OnInit {
   availableData:boolean=true;
   showNotification:boolean=false;
   imageData:any;
-  constructor(private prodServ:DashboardService,private womenSer:ProductsServiceService,private http:HttpServicesService,private route:Router,private httpClient:HttpClient) { }
+  fasmile=faSmile;
+  userId!:number;
+  constructor(private activatedRoute:ActivatedRoute,private prodServ:DashboardService,private womenSer:ProductsServiceService,private route:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
 
   ngOnInit(): void {
     // this.showProduct=this.prodServ.getCreatedProducts();
     // console.log(this.showProduct)
+    this.activatedRoute.params.subscribe((param)=>{
+      this.userId=param['id']
+    })
 
-    this.httpClient.get<any>(`${this.http.testUrl}/show`).subscribe(
+    this.http.get<any>(`${this.httpServ.testUrl}/user/${this.userId}/products`).subscribe(
       (res)=>{
-        this.showProduct=(res.products)
+        this.showProduct=res
       }
       )
     // if(this.showProduct.length > 0){
@@ -33,20 +40,16 @@ export class SellerDashboardComponent implements OnInit {
   }
 
 
-  postProduct(product:Products,i:any){
-    alert(i.value)
-    this.showNotification=true;
+  delete(productData:any,i:number){
+    this.showProduct.splice(i,1)
+    this.http.delete(`${this.httpServ.testUrl}/deleteProduct/`+productData.id).subscribe((res)=>(console.log(res)))
+    this.showNotification=true
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     setTimeout(() => {
-      this.womenSer.WomensProducts.push(...this.showProduct);
-      this.http.products.push(...this.showProduct)
-      this.showProduct.length=0;
-      this.showNotification=false;
-      this.route.navigate(['dashboard/manage'])
+    this.showNotification=false;
+    }, 2000);
 
-    }, 3000);
-
-
-    }
+  }
 
   }
 

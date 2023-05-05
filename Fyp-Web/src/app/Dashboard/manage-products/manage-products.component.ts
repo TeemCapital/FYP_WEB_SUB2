@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpServicesService } from './../../Services/http-services.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Products } from 'src/app/Interface/products';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 import { Observable } from 'rxjs';
@@ -17,11 +17,17 @@ export class ManageProductsComponent implements OnInit {
   category = ['Men', 'Women', 'Kids'];
   selectedCategory!: string;
   showNotification=false;
+  userId:any=0
 
   selectedImage!:File;
-  constructor(private ProdServ:DashboardService,private route:Router,private http:HttpServicesService,private httpClient:HttpClient) { }
+  constructor(private activatedRoute:ActivatedRoute,private ProdServ:DashboardService,private route:Router,private http:HttpServicesService,private httpClient:HttpClient) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params)=>{
+      this.userId=params['id']
+    }
+
+    )
   }
 
 
@@ -36,7 +42,8 @@ export class ManageProductsComponent implements OnInit {
     formData.append('title',data.title),
     formData.append('price',data.price),
     formData.append('category',this.selectedCategory),
-    formData.append('image',this.selectedImage)
+    formData.append('image',this.selectedImage),
+    formData.append('user_id',this.userId),
     console.log(formData)
     this.httpClient.post<any>(`${this.http.testUrl}/add`,formData).subscribe(
       (res)=>{
@@ -47,7 +54,7 @@ export class ManageProductsComponent implements OnInit {
     this.showNotification=true;
     setTimeout(() => {
       this.showNotification=false;
-      this.route.navigate(['dashboard/dashboard'])
+      this.route.navigate([`dashboard/${this.userId}/dashboard`])
     }, 2000);
   }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,6 +25,7 @@ class ProductController extends Controller
         $p=new product();
         $p->title=$request->title;
         $p->category=$request->category;
+        $p->user_id=$request->user_id;
         $p->description=$request->description;
         $p->price=$request->price;
         $p->save();
@@ -60,17 +62,31 @@ class ProductController extends Controller
         $p->save();
         return response()->json(['message'=>'Product successfully updated']);
     }
-    public function delete(Request $request){
-        // this line would validate all the requests
-        $validator=Validator::make($request->all(),[
-        // Here we would define the rules of validation
-        'id'=>'required',
-        ]);
-        if($validator->fails()){
-            return response()->json(['error'=>$validator->errors()->all()],status:409);
+
+    // public function delete(Request $request){
+    //     // this line would validate all the requests
+    //     $validator=Validator::make($request->all(),[
+    //     // Here we would define the rules of validation
+    //     'id'=>'required',
+    //     ]);
+    //     if($validator->fails()){
+    //         return response()->json(['error'=>$validator->errors()->all()],status:409);
+    //     }
+    //     return product::find($request->id)->delete();
+    //     // if($p){
+    //     //     return response()->json(['message'=>'Product successfully deleted!']);
+    //     // }
+    // }
+
+    public function delete($id){
+        if($id){
+            product::find($id)->delete();
+            return response()->json(["Message"=>"Product Deleted successfully"]);
         }
-        $p=product::find($request->id)->delete();
-        return response()->json(['message'=>'Product successfully deleted!']);
+        return response()->json(["error"=>"Some error occured"]);
+    }
+    public function sellerProductData($id){
+        return User::find($id)->data;
     }
     public function show(Request $request){
         session(['keys'=>$request->keys]);
@@ -84,10 +100,12 @@ class ProductController extends Controller
         return response()->json(['products'=>$products]);
     }
     public function showDetail($id){
-         $product= product::find($id);
+        $product= product::find($id);
+
         if(!$product){
             return response()->json(["error"=>"Item not found"]);
         }
+
         return response()->json($product);
     }
 }

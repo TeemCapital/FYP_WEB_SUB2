@@ -1,7 +1,7 @@
 <div class="alert alert-danger my-2" role="alert" *ngIf="showNotification==true">
-  Your Product has been posted!
+  Your Product has been deleted!
 </div>
-<div class="container" *ngIf="availableData==false">
+<div class="container"  *ngIf="showProduct.length < 1">
   <div class="row  text-center">
     <div class="col-md-6 my-auto">
       <h1>No product Found! Want to create a new product?</h1>
@@ -12,9 +12,11 @@
     </div>
   </div>
 </div>
-<div class="container mt-5" >
-  <a routerLink="../manage" class="btn btn-primary">Create a new Product</a>
-  <div class="row mt-5 border rounded p-3 shadow"  *ngFor="let product of showProduct;let i as index">
+
+<div class="container mt-3" *ngIf="showProduct.length >= 1">
+  <h1 class="bg-primary text-white p-2 rounded text-center">Products Dashboard <fa-icon [icon]="fasmile"></fa-icon></h1>
+        <a routerLink="../manage" class="btn btn-dark mx-auto">Create a new Product</a>
+  <div class="row mt-5 border rounded p-3 shadow"  *ngFor="let product of showProduct;let i=index">
     <div class="col-md-6" >
       <img src={{product.imagepath}}   class="img-fluid"  alt="">
     </div>
@@ -22,7 +24,7 @@
       <h3 class="text-white bg-dark rounded p-3"><strong>{{product.title}}</strong></h3>
       <p><b>Description: {{product.description}}</b></p>
       <h5 class="text-danger">Price: {{product.price | currency}}</h5>
-      <button class="btn btn-success" (click)="postProduct(product,i)">Post Product</button>
+      <button class="btn btn-danger" (click)="delete(product,i)">Remove Product</button>
     </div>
   </div>
 </div>

@@ -24,9 +24,13 @@ Route::post('add',[ProductController::class,'add']);
 Route::put('update',[ProductController::class,'update']);
 Route::delete('delete',[ProductController::class,'delete']);
 Route::get('show',[ProductController::class,'show']);
-Route::get('login',[userController::class,'login']);
+Route::get('user/{id}/products',[ProductController::class,'sellerProductData']);
+Route::post('login',[userController::class,'login']);
 Route::post('register',[userController::class,'register']);
 Route::get('show/{id}',[ProductController::class,'showDetail']);
 Route::post('cart',[CartController::class,'cart']);
 Route::get('showCart',[CartController::class,'showCart']);
 Route::delete('delete/{id}',[CartController::class,'deleteItem']);
+Route::delete('deleteProduct/{id}',[ProductController::class,'delete']);
+Route::post('/auth/logout',[userController::class,'login'])->middleware('
+auth:sanctum');

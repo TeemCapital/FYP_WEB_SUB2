@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -19,7 +18,6 @@ class CartController extends Controller
         $p->image=$request->image;
         $p->imagepath=$request->imagepath;
         $p->save();
-
     }
     function showCart(){
         return cart::all();
@@ -30,6 +28,5 @@ class CartController extends Controller
             return response()->json(["Deleted"=>"successfully"]);
         }
         return response()->json(["error"=>"occured"]);
-
     }
 }

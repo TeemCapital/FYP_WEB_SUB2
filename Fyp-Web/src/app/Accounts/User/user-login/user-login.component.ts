@@ -14,6 +14,8 @@ export class UserLoginComponent implements OnInit {
   faUser= faUser;
   faKey=faKey;
   loginNotification:boolean=false;
+  userId:number=0;
+  invalidPass:boolean=false;
   constructor(private authSer:authService,private router:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
 
   ngOnInit(): void {
@@ -24,15 +26,26 @@ export class UserLoginComponent implements OnInit {
   }
   submit(data:any){
     this.http.post<any>(`${this.httpServ.testUrl}/login`,data).subscribe(
+      (res)=>{console.log(res.data),localStorage.setItem('Token',res.data.token),this.userId=res.data.id
+      ,console.log(this.userId)
+    },
       (error)=>{
-        alert(error)
+        if(error){
+          this.invalidPass=true
+          setTimeout(() => {
+            this.invalidPass=false
+          }, 2000);
+        }
       },
       ()=>{
+        console.log(this.userId)
+
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.authSer.logIn()
         this.loginNotification=true;
         setTimeout(() => {
-          this.router.navigate(['/home'])
+          this.httpServ.userId=this.userId;
+          this.router.navigate([`dashboard/${this.userId}/dashboard`,])
         }, 2000);
       }
     )
