@@ -17,17 +17,16 @@ export class ManageProductsComponent implements OnInit {
   category = ['Men', 'Women', 'Kids'];
   selectedCategory!: string;
   showNotification=false;
-  userId:any=0
-
+  userId:any=localStorage.getItem('UID')
   selectedImage!:File;
   constructor(private activatedRoute:ActivatedRoute,private ProdServ:DashboardService,private route:Router,private http:HttpServicesService,private httpClient:HttpClient) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params)=>{
-      this.userId=params['id']
-    }
+    // this.activatedRoute.params.subscribe((params)=>{
+    //   this.userId=params['id']
+    // }
 
-    )
+    // )
   }
 
 
