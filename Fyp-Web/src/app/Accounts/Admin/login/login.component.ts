@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { authService } from 'src/app/Services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   token:any;
   storeId=localStorage.getItem('UID');
   invalidPass:boolean=false;
-  constructor(private authSer:authService,private router:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
+  constructor(private location:Location,private authSer:authService,private router:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
 
   ngOnInit(): void {
     this.token=localStorage.getItem('Token')
@@ -45,6 +46,9 @@ export class LoginComponent implements OnInit {
           this.httpServ.userId=this.userId;
           this.router.navigate([`dashboard/${this.userId}/dashboard`,])
         }, 2000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       }
     )
   }

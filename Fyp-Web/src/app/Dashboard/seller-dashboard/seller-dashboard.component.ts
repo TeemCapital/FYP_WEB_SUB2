@@ -5,7 +5,8 @@ import { HttpServicesService } from 'src/app/Services/http-services.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Products } from 'src/app/Interface/products';
-import {faSmile} from '@fortawesome/free-regular-svg-icons'
+import {faSmile} from '@fortawesome/free-regular-svg-icons';
+import { Location } from '@angular/common';
 import { faSlack } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -23,9 +24,10 @@ export class SellerDashboardComponent implements OnInit {
   storeId=localStorage.getItem('UID');
   alert:boolean=false;
   welcomeNoti:boolean=false;
-  constructor(private activatedRoute:ActivatedRoute,private prodServ:DashboardService,private womenSer:ProductsServiceService,private route:Router,private http:HttpClient,private httpServ:HttpServicesService,private router:Router) { }
+  constructor(private location:Location,private activatedRoute:ActivatedRoute,private prodServ:DashboardService,private womenSer:ProductsServiceService,private route:Router,private http:HttpClient,private httpServ:HttpServicesService,private router:Router) { }
 
   ngOnInit(): void {
+
     // this.showProduct=this.prodServ.getCreatedProducts();
     // console.log(this.showProduct)
     this.welcomeNoti=true;

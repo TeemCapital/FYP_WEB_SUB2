@@ -94,14 +94,16 @@
             <ul class="dropdown-menu" >
               <li><a class="dropdown-item" routerLink="dashboard/:id/manage">Create a new Product</a></li>
               <li><a class="dropdown-item" routerLink="dashboard/:id/dashboard">Product Dashboard</a></li>
-              <li><a class="dropdown-item " (click)="logout()">Logout</a></li>
+              <li><a class="dropdown-item " (click)="logout()" style="cursor:pointer">Logout</a></li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
+  <div *ngIf="logoutNotification==true" class="alert alert-primary mt-3" role="alert">
+    <h5 class="my-2 text-center" >You Are Being Logged Out</h5>
+    </div>
 <router-outlet></router-outlet>
 
 <div class="container mt-5">

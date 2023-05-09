@@ -20,26 +20,31 @@ export class AppComponent implements OnInit{
   faShoppingBasket=faShoppingBasket;
   faUser=faUser;
   faHeart=faHeart;
+
   title = 'Fyp-Web';
+
   isLoggedIn=false;
+  logoutNotification: boolean=false;
+  adminLogin=new Subject<boolean>();
+
   cartCounter!:number;
+
   UID=localStorage.getItem('UID')
   token=localStorage.getItem('Token')
-  login:BehaviorSubject<boolean> =new BehaviorSubject(false);
-
-  public searchTerm !: string;
   storeId: any=localStorage.getItem('UID');
-  logoutNotification: boolean=false;
+
+  public searchTerm!:string;
+
   constructor(private router:Router,private httpServ:HttpServicesService,private prodServ:ProductsServiceService,private httpServe:HttpServicesService,private authSer:authService,private http:HttpClient){
     this.prodServ.cartItemsCount$.subscribe((res)=>{
     this.cartCounter=res;
     });
     console.log(this.cartCounter)
-
-    // this.httpServe.GetProducts().subscribe()
-
   }
   ngOnInit(): void {
+    this.adminLogin.subscribe((res)=>{
+      this.isLoggedIn=res
+    })
     if(this.UID){
       this.isLoggedIn=true
     }
@@ -50,7 +55,6 @@ export class AppComponent implements OnInit{
   }
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
-    console.log(this.searchTerm);
     this.prodServ.search.next(this.searchTerm);
   }
   logout() {
@@ -63,9 +67,13 @@ export class AppComponent implements OnInit{
       localStorage.removeItem('Token')
       localStorage.removeItem('UID')
       this.authSer.logOut();
+      this.isLoggedIn=false;
+      this.adminLogin.next(this.isLoggedIn)
       this.logoutNotification=true;
       setTimeout(() => {
           this.logoutNotification=false
+          this.router.navigate(['/home'])
+
       }, 2000);
     }
 

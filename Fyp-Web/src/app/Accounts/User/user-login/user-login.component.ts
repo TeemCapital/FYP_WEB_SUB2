@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { faUser,faKey} from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-login',
@@ -18,10 +19,16 @@ export class UserLoginComponent implements OnInit {
   userId:number=0;
   token:any;
   invalidPass:boolean=false;
+  adminLogin=new Subject<boolean>();
+  isLoggedIn=false;
+
   constructor(private authSer:authService,private router:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
 
   ngOnInit(): void {
     this.token=localStorage.getItem('Token')
+    this.adminLogin.subscribe((res)=>{
+      this.isLoggedIn=res
+    })
   }
   submit(data:any){
     this.http.post<any>(`${this.httpServ.testUrl}/login`,data).subscribe(
@@ -43,6 +50,9 @@ export class UserLoginComponent implements OnInit {
         setTimeout(() => {
           this.httpServ.userId=this.userId;
           this.router.navigate([`dashboard/${this.userId}/dashboard`,])
+          this.isLoggedIn=true;
+          this.adminLogin.next(this.isLoggedIn)
+          this.httpServ.isLoggedIn=this.isLoggedIn;
         }, 2000);
       }
     )

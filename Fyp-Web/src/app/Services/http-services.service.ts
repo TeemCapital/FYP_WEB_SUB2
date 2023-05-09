@@ -9,6 +9,7 @@ export class HttpServicesService {
 
   public testUrl='http://127.0.0.1:8000/api';
   products!:Products[];
+  isLoggedIn!:boolean;
   userId!:number;
   constructor(private http:HttpClient) { }
 }
