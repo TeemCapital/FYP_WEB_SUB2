@@ -22,11 +22,6 @@ export class ManageProductsComponent implements OnInit {
   constructor(private activatedRoute:ActivatedRoute,private ProdServ:DashboardService,private route:Router,private http:HttpServicesService,private httpClient:HttpClient) { }
 
   ngOnInit(): void {
-    // this.activatedRoute.params.subscribe((params)=>{
-    //   this.userId=params['id']
-    // }
-
-    // )
   }
 
 
