@@ -1,3 +1,4 @@
+import { productGuardService } from '../guards/products-guard.service';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { SellerDashboardComponent } from './seller-dashboard/seller-dashboard.component';
 import { NgModule } from '@angular/core';

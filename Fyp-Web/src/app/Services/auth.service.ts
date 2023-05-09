@@ -19,4 +19,7 @@ export class authService{
   isAutheticated(){
     return this.loggedIn;
   }
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

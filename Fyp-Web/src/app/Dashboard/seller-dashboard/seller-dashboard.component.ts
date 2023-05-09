@@ -19,24 +19,38 @@ export class SellerDashboardComponent implements OnInit {
   showNotification:boolean=false;
   imageData:any;
   fasmile=faSmile;
-  userId!:number;
-  constructor(private activatedRoute:ActivatedRoute,private prodServ:DashboardService,private womenSer:ProductsServiceService,private route:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
+  userId!:any;
+  storeId=localStorage.getItem('UID');
+  alert:boolean=false;
+  welcomeNoti:boolean=false;
+  constructor(private activatedRoute:ActivatedRoute,private prodServ:DashboardService,private womenSer:ProductsServiceService,private route:Router,private http:HttpClient,private httpServ:HttpServicesService,private router:Router) { }
 
   ngOnInit(): void {
     // this.showProduct=this.prodServ.getCreatedProducts();
     // console.log(this.showProduct)
+    this.welcomeNoti=true;
+    setTimeout(() => {
+        this.welcomeNoti=false
+    }, 2000);
     this.activatedRoute.params.subscribe((param)=>{
       this.userId=param['id']
     })
+    if(this.userId=this.storeId){
+      this.http.get<any>(`${this.httpServ.testUrl}/user/${this.userId}/products`).subscribe(
+        (res)=>{
+          this.showProduct=res
+        }
+        )
+    }
+    else{
+      this.alert=true;
+      setTimeout(() => {
+        this.alert=false;
+        this.router.navigate([`dashboard/${this.storeId}/dashboard`])
 
-    this.http.get<any>(`${this.httpServ.testUrl}/user/${this.userId}/products`).subscribe(
-      (res)=>{
-        this.showProduct=res
-      }
-      )
-    // if(this.showProduct.length > 0){
-    //   this.availableData=true;
-    // }
+      }, 2000);
+
+    }
   }
 
 

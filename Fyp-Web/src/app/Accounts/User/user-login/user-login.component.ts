@@ -1,3 +1,4 @@
+import { DashboardService } from 'src/app/Services/dashboard.service';
 import { Router } from '@angular/router';
 import { authService } from './../../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,14 +16,12 @@ export class UserLoginComponent implements OnInit {
   faKey=faKey;
   loginNotification:boolean=false;
   userId:number=0;
+  token:any;
   invalidPass:boolean=false;
   constructor(private authSer:authService,private router:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
 
   ngOnInit(): void {
-
-  }
-  logout(){
-    this.authSer.logOut()
+    this.token=localStorage.getItem('Token')
   }
   submit(data:any){
     this.http.post<any>(`${this.httpServ.testUrl}/login`,data).subscribe(
@@ -38,8 +37,6 @@ export class UserLoginComponent implements OnInit {
         }
       },
       ()=>{
-        console.log(this.userId)
-
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.authSer.logIn()
         this.loginNotification=true;

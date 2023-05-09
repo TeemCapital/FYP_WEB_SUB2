@@ -1,6 +1,12 @@
 <div class="alert alert-danger my-2" role="alert" *ngIf="showNotification==true">
   Your Product has been deleted!
 </div>
+<div class="alert alert-danger" role="alert" *ngIf="alert==true">
+  Logout to current account to access another account
+</div>
+<div class="alert alert-primary my-2" role="alert" *ngIf="welcomeNoti==true">
+<h5 class="text-center">Welcome To Your Store Dashboard</h5>
+</div>
 <div class="container"  *ngIf="showProduct.length < 1">
   <div class="row  text-center">
     <div class="col-md-6 my-auto">

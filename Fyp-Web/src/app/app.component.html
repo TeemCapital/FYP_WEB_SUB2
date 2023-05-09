@@ -77,13 +77,24 @@
               </span>
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" *ngIf="isLoggedIn==false">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <fa-icon class="mx-1" [icon]="faUser"></fa-icon>SELLER'S CORNER
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="accounts/login">LOGIN</a></li>
               <li><a class="dropdown-item" routerLink="accounts/signup">SIGNUP</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown" *ngIf="isLoggedIn==true">
+            <a class="nav-link dropdown-toggle ms-1 btn btn-primary text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <fa-icon class="mx-1" [icon]="faUser"></fa-icon>Account
+            </a>
+            <ul class="dropdown-menu" >
+              <li><a class="dropdown-item" routerLink="dashboard/:id/manage">Create a new Product</a></li>
+              <li><a class="dropdown-item" routerLink="dashboard/:id/dashboard">Product Dashboard</a></li>
+              <li><a class="dropdown-item " (click)="logout()">Logout</a></li>
             </ul>
           </li>
         </ul>

@@ -82,7 +82,6 @@ class userController extends Controller
             $success['token']=$user->createToken('MyApp')->plainTextToken;
             $success['name']=$user->name;
             $success['id']=$user->id;
-
             $response=[
                 'success'=>true,
                 'data'=>$success,
@@ -95,7 +94,9 @@ class userController extends Controller
         }
     }
     public function logout(Request $request){
-        $request->user()->currentAccessToken()->delete();
+        if($request->user()){
+            $request->user()->currentAccessToken()->delete();
+        }
         return response()->json([
             'message'=>"user successully logged out"
         ],200);

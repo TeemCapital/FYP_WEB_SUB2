@@ -32,5 +32,5 @@ Route::post('cart',[CartController::class,'cart']);
 Route::get('showCart',[CartController::class,'showCart']);
 Route::delete('delete/{id}',[CartController::class,'deleteItem']);
 Route::delete('deleteProduct/{id}',[ProductController::class,'delete']);
-Route::post('/auth/logout',[userController::class,'login'])->middleware('
-auth:sanctum');
+Route::post('/logout',[userController::class,'logout']);
+
