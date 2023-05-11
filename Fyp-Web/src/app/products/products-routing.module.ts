@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'men', component: ProductsComponent },
   {path:'men/:id',component:ProductDetailsComponent},
   {path:'women',component:ProductsComponent},
-  {path:'women/:id',component:ProductDetailsComponent,canActivate:[productGuardService]}
+  {path:'women/:id',component:ProductDetailsComponent}
 ];
 
 @NgModule({

@@ -60,7 +60,7 @@
             <a class="nav-link mx-2 text-uppercase" href="#">Services</a>
           </li>
           <li class="nav-item ">
-            <a type="button" class="nav-link text-uppercase position-relative" routerLink="/favourite">
+            <a type="button" class="nav-link text-uppercase position-relative" routerLink="savedItems/favourites">
               <fa-icon [icon]="faHeart"></fa-icon> wishlist
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                 0
@@ -70,7 +70,7 @@
         </ul>
         <ul class="navbar-nav ms-auto ">
           <li class="nav-item">
-            <a type="button" class="nav-link mx-2 text-uppercase position-relative" routerLink="/cart">
+            <a type="button" class="nav-link mx-2 text-uppercase position-relative" routerLink="savedItems/cart">
               <fa-icon [icon]="faShoppingBasket"></fa-icon> Cart
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{cartCounter}}
@@ -94,7 +94,9 @@
             <ul class="dropdown-menu" >
               <li><a class="dropdown-item" routerLink="dashboard/:id/manage">Create a new Product</a></li>
               <li><a class="dropdown-item" routerLink="dashboard/:id/dashboard">Product Dashboard</a></li>
+              <li><a class="dropdown-item "  style="cursor:pointer" routerLink="dashboard/:id/orders">Orders</a></li>
               <li><a class="dropdown-item " (click)="logout()" style="cursor:pointer">Logout</a></li>
+
             </ul>
           </li>
         </ul>

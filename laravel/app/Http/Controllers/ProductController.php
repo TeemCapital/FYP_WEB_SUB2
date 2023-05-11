@@ -89,15 +89,27 @@ class ProductController extends Controller
         return User::find($id)->data;
     }
     public function show(Request $request){
-        session(['keys'=>$request->keys]);
-        $products=product::where(function($q){
-            $q->where('products.id','LIKE',"%".session('keys').'%');
-            $q->where('products.title','LIKE',"%".session('keys').'%');
-            $q->where('products.price','LIKE',"%".session('keys').'%');
-            $q->where('products.description','LIKE',"%".session('keys').'%');
-            $q->where('products.category','LIKE',"%".session('keys').'%');
-        })->select('products.*')->get();
-        return response()->json(['products'=>$products]);
+        // session(['keys'=>$request->keys]);
+        // $products=product::where(function($q){
+        //     $q->where('products.id','LIKE',"%".session('keys').'%');
+        //     $q->where('products.title','LIKE',"%".session('keys').'%');
+        //     $q->where('products.price','LIKE',"%".session('keys').'%');
+        //     $q->where('products.description','LIKE',"%".session('keys').'%');
+        //     $q->where('products.category','LIKE',"%".session('keys').'%');
+        // })->select('products.*')->get();
+        // return response()->json(['products'=>$products]);
+        $products= product::where('category','=','Men')->get();
+        if($products){
+            return $products;
+        }
+        return response()->json(["Message"=>"Something went wrong"]);
+    }
+    public function showWomenProducts(){
+        $products=product::where('category','=','Women')->get();
+        if($products){
+            return $products;
+        }
+        return response()->json(['Message'=>"Something went wrong"]);
     }
     public function showDetail($id){
         $product= product::find($id);
@@ -108,4 +120,7 @@ class ProductController extends Controller
 
         return response()->json($product);
     }
+
+
+
 }

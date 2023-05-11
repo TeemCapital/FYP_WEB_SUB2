@@ -6,6 +6,7 @@ import {faArrowRight,faShoppingBag} from '@fortawesome/free-solid-svg-icons'
 import { Products } from '../../Interface/products';
 import { HttpClient } from '@angular/common/http';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
+import { authService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -20,13 +21,13 @@ export class CartComponent implements OnInit,OnDestroy {
   cartData:any;
   Productquantity!:number;
   finalAmount:number=0;
-
+  userId:any=localStorage.getItem('UID');
   checkOutNotification:boolean=false;
 
-  constructor(private prodServ:ProductsServiceService,private router:Router,private http:HttpClient, private httpServ:HttpServicesService) { }
+  constructor(private prodServ:ProductsServiceService,private router:Router,private http:HttpClient, private httpServ:HttpServicesService,private authSer:authService) { }
 
   ngOnInit(): void {
-    console.log(this.finalAmount,"final Amount")
+    console.log("The result is"+this.authSer.loggedIn);
     this.http.get<any>(`${this.httpServ.testUrl}/showCart`).subscribe(
         (res)=>{this.MenproductData.push(...res)
         console.log(this.MenproductData)
@@ -41,24 +42,29 @@ export class CartComponent implements OnInit,OnDestroy {
 
   delete(i:number,productData:any){
     this.MenproductData.splice(i,1)
-    this.http.delete(`${this.httpServ.testUrl}/delete/`+productData.id).subscribe((res)=>(console.log(res)))
+    this.http.delete(`${this.httpServ.testUrl}/delete/`+productData.id).subscribe((res)=>{
+      this.prodServ.deleted$.next(true);
+      // this.finalAmount=this.finalAmount - productData.totalPrice;
+      // this.prodServ.count=this.prodServ.count-1;
+      // let itemCount=this.prodServ.count-1;
+      // this.prodServ.cartItemsCount$.next((itemCount));
+  })
+
     // this.prodServ.cartProduct=this.MenproductData;
-    this.finalAmount=this.finalAmount - productData.totalPrice;
-    this.prodServ.count=this.prodServ.count-1;
-    let itemCount=this.prodServ.count-1;
-    this.prodServ.cartItemsCount$.next((itemCount));
+
 
   }
   checkOut(){
-    this.prodServ.checkoutData=this.MenproductData;
-    console.log(this.prodServ.checkoutData,"checkoutData")
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    this.checkOutNotification=true
-    setTimeout(() => {
-      this.checkOutNotification=false;
-      this.prodServ.finalCheckOutPrice=this.finalAmount;
-      this.router.navigate(["/payment"])
-    }, 2000);
+    // this.prodServ.checkoutData=this.MenproductData;
+    // console.log(this.prodServ.checkoutData,"checkoutData")
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
+    // this.checkOutNotification=true
+    // setTimeout(() => {
+    //   this.checkOutNotification=false;
+    //   this.prodServ.finalCheckOutPrice=this.finalAmount;
+    //   this.router.navigate(["/payment"])
+    // }, 2000);
+    this.router.navigate([`${this.userId}/payments`])
 
   }
 ngOnDestroy(): void {

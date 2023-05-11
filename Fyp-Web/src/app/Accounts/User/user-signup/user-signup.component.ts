@@ -19,17 +19,10 @@ export class UserSignupComponent implements OnInit {
   ngOnInit(): void {
   }
   submit(data:any){
-    this.http.post<BuyerModel>(`${this.httpSer.testUrl}/register`,data).subscribe(
-        () => {
-          alert('Request successful!');
-        },
-        error => {
-          this.showNoti=true;
-          document.body.scrollTop = document.documentElement.scrollTop = 0;
-          setTimeout(() => {
-            this.showNoti=false;
-          }, 4000);
-        }
+    this.http.post<any>(`${this.httpSer.testUrl}/registerBuyer`,data).subscribe(
+      (res)=>{
+        console.log(res)
+      }
     )
   }
 

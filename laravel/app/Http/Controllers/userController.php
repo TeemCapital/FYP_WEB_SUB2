@@ -31,28 +31,45 @@ class userController extends Controller
     public function register(Request $request){
         $validator= Validator::make($request->all(),[
             'name'=>'required',
+            'storeName'=>'required | unique:users',
             'email'=>'required',
             'password'=>'required'
         ]);
-        if($validator->fails()){
-            $response=[
-                'success'=>false,
-                'message'=>$validator->errors()
-            ];
-            return response()->json($response,400);
-        }
-        $input=$request->all();
-        $input['password']=bcrypt($input['password']);
-        $user=User::create($input);
+        try{
+            $input=$request->all();
+            $input['password']=bcrypt($input['password']);
+            $user=User::create($input);
 
-        $success['token']=$user->createToken('MyApp')->plainTextToken;
-        $success['name']=$user->name;
-        $response=[
-            'success'=>true,
-            'data'=>$success,
-            'manage'=>'User registered Successfully'
-        ];
-        return response()->json($response,200);
+            $success['token']=$user->createToken('MyApp')->plainTextToken;
+            $success['name']=$user->name;
+            $success['storeName']=$user->storeName;
+            $response=[
+                'success'=>true,
+                'data'=>$success,
+                'manage'=>'User registered Successfully'
+            ];
+            return response()->json($response,200);
+        }
+        catch (\Illuminate\Database\QueryException $exception) {
+            // Check if the error is a duplicate entry error
+            if ($exception->errorInfo[1] == 1062) { // 1062 is the error code for duplicate entry
+                // Return error response
+                return response()->json([
+                    'message' => 'Email or Store Name Already Exists',
+                ], 409);
+            }
+
+            // Otherwise, re-throw the exception
+            throw $exception;
+        }
+        // if($validator->fails()){
+        //     $response=[
+        //         'success'=>false,
+        //         'message'=>"Email or StoreName Alredy Exists"
+        //     ];
+        //     return response()->json($response,400);
+        // }
+
 
     }
 

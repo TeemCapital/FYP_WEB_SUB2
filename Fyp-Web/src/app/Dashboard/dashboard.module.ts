@@ -6,12 +6,14 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
   declarations: [
     SellerDashboardComponent,
-    ManageProductsComponent
+    ManageProductsComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

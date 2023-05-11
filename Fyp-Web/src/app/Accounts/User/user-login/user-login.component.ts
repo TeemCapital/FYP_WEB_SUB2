@@ -23,7 +23,6 @@ export class UserLoginComponent implements OnInit {
   isLoggedIn=false;
 
   constructor(private authSer:authService,private router:Router,private http:HttpClient,private httpServ:HttpServicesService) { }
-
   ngOnInit(): void {
     this.token=localStorage.getItem('Token')
     this.adminLogin.subscribe((res)=>{
@@ -31,8 +30,8 @@ export class UserLoginComponent implements OnInit {
     })
   }
   submit(data:any){
-    this.http.post<any>(`${this.httpServ.testUrl}/login`,data).subscribe(
-      (res)=>{console.log(res.data),localStorage.setItem('Token',res.data.token),this.userId=res.data.id
+    this.http.post<any>(`${this.httpServ.testUrl}/userLogin`,data).subscribe(
+      (res)=>{console.log(res.data),localStorage.setItem('Token',res.data.token),localStorage.setItem('BID',res.data.id),this.userId=res.data.id
       ,console.log(this.userId)
     },
       (error)=>{
@@ -49,7 +48,7 @@ export class UserLoginComponent implements OnInit {
         this.loginNotification=true;
         setTimeout(() => {
           this.httpServ.userId=this.userId;
-          this.router.navigate([`dashboard/${this.userId}/dashboard`,])
+          this.router.navigate([`/${this.userId}/payments`,])
           this.isLoggedIn=true;
           this.adminLogin.next(this.isLoggedIn)
           this.httpServ.isLoggedIn=this.isLoggedIn;

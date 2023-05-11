@@ -29,4 +29,19 @@ class CartController extends Controller
         }
         return response()->json(["error"=>"occured"]);
     }
+    public function totalAmount(){
+        $totalAmount=cart::sum('totalPrice');
+        if($totalAmount){
+            return $totalAmount;
+        }
+        return response()->json(["Message: Something went wrong"]);
+    }
+    public function getProductCount(){
+        $count =cart::count('title');
+        if($count){
+            return $count;
+        }
+        return response()->json(['Message'=>'Total Count is'. $count]);
+    }
+
 }

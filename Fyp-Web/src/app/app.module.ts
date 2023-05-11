@@ -13,14 +13,13 @@ import { CartComponent } from './SavedItems/cart/cart.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './SavedItems/favourite/favourite.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { productGuardService } from './guards/products-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    CartComponent,
-    FavouriteComponent,
     PaymentsComponent,
   ],
   imports: [
@@ -32,7 +31,7 @@ import { PaymentsComponent } from './payments/payments.component';
     FormsModule
 
   ],
-  providers: [],
+  providers: [productGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

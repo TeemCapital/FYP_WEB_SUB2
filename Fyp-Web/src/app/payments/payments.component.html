@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row ">
-    <div class="col-md-6 mx-auto table-responsive">
+    <div class="col-md-8 mx-auto table-responsive">
       <table class="table table-dark table-striped rounded shadow" >
         <thead>
           <tr>
@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of showCheckoutData let i=index">
+          <tr *ngFor="let data of products let i=index">
               <td>{{i+1}}</td>
               <td>{{data.title}}</td>
               <td>{{data.quantity}}</td>
@@ -28,15 +28,23 @@
           </tr>
         </tbody>
       </table>
-    </div>
 
-  </div>
-  <div class="row ">
-    <div class="col-md-6 mx-auto ">
-      <a class="btn btn-danger mx-auto "><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
-      <a class="btn btn-dark mx-md-3 mx-sm-1" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
     </div>
-    <div class="col-md-6 mx-auto mt-4 mt-md-0">
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle mx-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Payment Method
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item " style="cursor: pointer;" ><fa-icon class="mx-1" [icon]="faTruck"></fa-icon>Cash On Delivery</a></li>
+          <li><a class="dropdown-item"  style="cursor: pointer;" ><fa-icon class="mx-1" [icon]="faCreditCard"></fa-icon> Pay Online</a></li>
+
+        </ul>
+      </span>
+      <a class="btn btn-danger mx-auto "><fa-icon [icon]="faArrow" ></fa-icon> Place Order</a>
+      <a class="btn btn-dark mx-md-3 mx-sm-1" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
       <span class="bg-danger text-white rounded p-3 ">Total:{{finalAmount | currency}}</span>
     </div>
   </div>

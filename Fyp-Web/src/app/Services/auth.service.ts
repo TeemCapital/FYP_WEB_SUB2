@@ -14,7 +14,6 @@ export class authService{
   logOut(){
    this.loggedIn=false
    console.log("logout worked")
-
   }
   isAutheticated(){
     return this.loggedIn;

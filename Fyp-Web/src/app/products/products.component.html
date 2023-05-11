@@ -4,6 +4,9 @@
     <h1 class="text-white"><strong>PRELOVED CO. MENS COLLECTION</strong></h1>
 </div>
   <div class="row">
+    <div *ngIf="loadingData==true" class="spinner-border text-dark mx-auto my-5"  role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
     <div class="col-md-12 my-5" *ngFor="let product of products | filter:searchKey:'title'" style="width: 18rem;" >
       <div class="card shadow" >
         <img src={{product.imagepath}} class="img-fluid" alt="card-image">

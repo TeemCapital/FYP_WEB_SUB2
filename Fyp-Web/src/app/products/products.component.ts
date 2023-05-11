@@ -6,6 +6,7 @@ import { ProductsServiceService } from '../Services/products-service.service';
 import { Products } from '../Interface/products';
 import { authService } from '../Services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -16,39 +17,36 @@ export class ProductsComponent implements OnInit {
   products!:Products[];
   test:any;
   url !:string;
+  loadingData:boolean=true;
   searchKey:string ="";
   constructor(private authSer:authService,private router:Router,private productSer:ProductsServiceService,private httpServe:HttpServicesService,private activatedRoute:ActivatedRoute,private http:HttpClient) { }
 
   ngOnInit(): void {
-    console.log(this.authSer.loggedIn)
-
-
     this.url=this.router.url;
-    if(this.url.includes("/men")){
-      this.http.get<any>(`${this.httpServe.testUrl}/show`).subscribe(
-        (res)=>{
-          this.products=(res.products)
-          
-        }
+    if(this.url.includes("product/men")){
+      this.http.get<any>(`${this.httpServe.testUrl}/show`).pipe(
+        finalize(()=>{
+          this.setBooleantofalse()
+        })
+      )
+      .subscribe(
+        (res)=>{this.products=res}
         )
     }
     if(this.url.includes('/women')){
-      this.products=this.productSer.getAllWomensProducts()
-      console.log(this.products)
-    }
-
-    this.productSer.search.subscribe((val:any)=>{
+      this.http.get<any>(`${this.httpServe.testUrl}/showWomenProducts`).pipe(
+        finalize(()=>{
+          this.setBooleantofalse()
+        })
+      ).subscribe(
+          (res)=>(this.products=res)
+          )
+      }
+      this.productSer.search.subscribe((val:any)=>{
       this.searchKey = val;
     })
   }
-
-  // getAllProducts():any{
-  //   this.httpServe.GetProducts().subscribe(
-  //     (resp)=>{
-  //       this.products=resp;
-  //     }
-  //   )
-  //   }
-
-
+  setBooleantofalse(){
+    this.loadingData=false;
+  }
 }

@@ -36,12 +36,17 @@ export class AppComponent implements OnInit{
   public searchTerm!:string;
 
   constructor(private router:Router,private httpServ:HttpServicesService,private prodServ:ProductsServiceService,private httpServe:HttpServicesService,private authSer:authService,private http:HttpClient){
-    this.prodServ.cartItemsCount$.subscribe((res)=>{
-    this.cartCounter=res;
-    });
-    console.log(this.cartCounter)
+
   }
+
   ngOnInit(): void {
+    this.getCartCount();
+    this.prodServ.deleted$.subscribe(res=>{
+      if(res){
+        this.getCartCount();
+      }
+    })
+
     this.adminLogin.subscribe((res)=>{
       this.isLoggedIn=res
     })
@@ -53,10 +58,20 @@ export class AppComponent implements OnInit{
     }
     this.http.get<any>(`${this.httpServe.testUrl}`)
   }
+  
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
     this.prodServ.search.next(this.searchTerm);
   }
+
+  getCartCount():void{
+    this.http.get<number>(`${this.httpServ.testUrl}/getProductCount`).subscribe(
+      res=>{
+        this.cartCounter=res
+      }
+    )
+  }
+
   logout() {
     this.http.post<any>(`${this.httpServ.testUrl}/logout`,this.token).subscribe(
       (res)=>{

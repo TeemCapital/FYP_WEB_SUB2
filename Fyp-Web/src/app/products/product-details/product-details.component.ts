@@ -43,14 +43,19 @@ export class ProductDetailsComponent implements OnInit {
       })
   }
   AddtoCart(data:any){
+    this.prodServ.deleted$.next(true);
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.cart=true
     this.products[0].quantity=this.quantity;
     this.http.post<any>(`${this.httpServ.testUrl}/cart`,this.products[0]).subscribe((res)=>(console
       .log(res)))
     console.log(this.prodServ.cartProduct)
-    let count=this.prodServ.count++;
-    this.prodServ.cartItemsCount$.next((count));
+    this.http.get<number>(`${this.httpServ.testUrl}/getProductCount`).subscribe(
+      res=>{
+        let count=res;
+        this.prodServ.cartItemsCount$.next((count));
+      }
+    )
     setTimeout(() => {
       this.cart=false
     }, 3000);
