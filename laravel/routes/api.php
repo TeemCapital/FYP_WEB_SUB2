@@ -39,7 +39,9 @@ Route::delete('deleteProduct/{id}',[ProductController::class,'delete']);
 Route::post('/logout',[userController::class,'logout']);
 
 
-Route::post('registerBuyer',[buyersController::class,'registerBuyer']);
-Route::post('userLogin',[buyersController::class,'userLogin']);
-Route::post('userLogout',[buyersController::class,'userLogout']);
+Route::post('/registerBuyer',[buyersController::class,'registerBuyer']);
+Route::post('/userLogin',[buyersController::class,'userLogin']);
+Route::post('/userLogout',[buyersController::class,'userLogout']);
 
+
+Route::get('buyer/{id}/products',[CartController::class,'cartData']);

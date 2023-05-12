@@ -14,9 +14,8 @@ import { UserSignupComponent } from './Accounts/User/user-signup/user-signup.com
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home', component:HomeComponent},
-  {path:'cart',component:CartComponent},
   {path:'favourite',component:FavouriteComponent},
-  {path:':id/payments',component:PaymentsComponent,canActivate:[productGuardService]},
+  {path:':id/payments',component:PaymentsComponent},
   { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
   { path: 'accounts', loadChildren: () => import('./Accounts/accounts.module').then(m => m.AccountsModule) },
   { path: 'dashboard', loadChildren: () => import('./Dashboard/dashboard.module').then(m => m.DashboardModule) },

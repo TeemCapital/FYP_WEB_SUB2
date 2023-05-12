@@ -11,5 +11,6 @@ class buyer extends Model
     use HasApiTokens;
     use HasFactory;
     protected $fillable=['email','username','password'];
+    public $timestamps=false;
 
 }

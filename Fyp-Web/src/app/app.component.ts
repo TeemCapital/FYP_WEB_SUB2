@@ -32,7 +32,9 @@ export class AppComponent implements OnInit{
   UID=localStorage.getItem('UID')
   token=localStorage.getItem('Token')
   storeId: any=localStorage.getItem('UID');
+  BuyerId: any=localStorage.getItem('BID');
 
+  buyerLoggedIn:boolean=false;
   public searchTerm!:string;
 
   constructor(private router:Router,private httpServ:HttpServicesService,private prodServ:ProductsServiceService,private httpServe:HttpServicesService,private authSer:authService,private http:HttpClient){
@@ -46,7 +48,6 @@ export class AppComponent implements OnInit{
         this.getCartCount();
       }
     })
-
     this.adminLogin.subscribe((res)=>{
       this.isLoggedIn=res
     })
@@ -56,9 +57,13 @@ export class AppComponent implements OnInit{
     else{
       this.isLoggedIn=false
     }
-    this.http.get<any>(`${this.httpServe.testUrl}`)
+    if(this.BuyerId){
+      this.buyerLoggedIn=true
+    }else{
+      this.buyerLoggedIn=false;
+    }
   }
-  
+
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
     this.prodServ.search.next(this.searchTerm);
@@ -78,19 +83,44 @@ export class AppComponent implements OnInit{
         console.log(res)
       }
     )
-    if(this.token && this.storeId){
+    if(this.token && this.storeId || this.BuyerId){
       localStorage.removeItem('Token')
       localStorage.removeItem('UID')
+      localStorage.removeItem('BID')
       this.authSer.logOut();
       this.isLoggedIn=false;
       this.adminLogin.next(this.isLoggedIn)
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.logoutNotification=true;
       setTimeout(() => {
           this.logoutNotification=false
-          this.router.navigate(['/home'])
+          this.buyerLoggedIn=false
+          this.router.navigate(['../'])
+          window.location.reload();
 
       }, 2000);
     }
 
   }
+  // buyerLogout() {
+  //   this.http.post<any>(`${this.httpServ.testUrl}/logout`,this.token).subscribe(
+  //     (res)=>{
+  //       console.log(res)
+  //     }
+  //   )
+  //   if(this.token && this.storeId){
+  //     localStorage.removeItem('Token')
+  //     localStorage.removeItem('UID')
+  //     this.authSer.logOut();
+  //     this.isLoggedIn=false;
+  //     this.adminLogin.next(this.isLoggedIn)
+  //     this.logoutNotification=true;
+  //     setTimeout(() => {
+  //         this.logoutNotification=false
+  //         this.router.navigate(['/home'])
+
+  //     }, 2000);
+  //   }
+
+  // }
 }

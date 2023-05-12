@@ -17,16 +17,21 @@
         <label for="email" class="form-label">EMAIL:</label>
         <div class="input-group">
           <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
-          <input type="email" ngModel name="email" class="form-control">
+          <input type="email" ngModel name="email" required class="form-control">
+        </div>
+        <label for="email" class="form-label">Store Name:</label>
+        <div class="input-group">
+          <span class="input-group-text"><fa-icon [icon]="faStore"></fa-icon></span>
+          <input type="text" ngModel name="storeName" required class="form-control">
         </div>
         <label for="password" class="form-label">PASSWORD:</label>
         <div class="input-group">
           <span class="input-group-text"><fa-icon [icon]="faKey"></fa-icon></span>
-          <input type="password" name="password" ngModel class="form-control">
+          <input type="password" name="password" ngModel required class="form-control">
         </div>
         <p><a style="cursor: pointer;"><b>Forgot Password?</b></a></p>
         <p>DOESNT HAVE AN ACCOUNT?<a style="cursor: pointer;" routerLink="../../accounts/signup"><b> CREATE ACCOUNT</b></a></p>
-        <button class="btn btn-dark">Login</button>
+        <button class="btn btn-dark" [disabled]="!loginForm.valid">Login</button>
       </form>
 
     </div>

@@ -14,22 +14,14 @@ export class productGuardService implements CanActivate{
     // if(this.authSer.isAutheticated()){
     //   return true
     // }
-    if(this.userId ){
-      this.authSer.isAutheticated()
+    if(this.BuyerId || this.userId){
       return true
     }
-    if(this.BuyerId){
-      this.authSer.isAutheticated()
-      return true
-    }
-
     else{
-
         alert("You have to login first")
         this.router.navigate(['accounts/userlogin']);
         return false;
 
       }
-
 }
 }

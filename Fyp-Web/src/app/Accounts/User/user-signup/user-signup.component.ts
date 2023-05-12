@@ -19,7 +19,7 @@ export class UserSignupComponent implements OnInit {
   ngOnInit(): void {
   }
   submit(data:any){
-    this.http.post<any>(`${this.httpSer.testUrl}/registerBuyer`,data).subscribe(
+    this.http.post<any>(`${this.httpSer.testUrl}/register`,data).subscribe(
       (res)=>{
         console.log(res)
       }

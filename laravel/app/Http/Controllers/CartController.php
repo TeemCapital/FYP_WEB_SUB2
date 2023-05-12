@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\cart;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     function cart(Request $request){
         $p=new cart();
+        $p->user_id=$request->user_id;
         $p->title=$request->title;
         $p->category=$request->category;
         $p->description=$request->description;
@@ -41,7 +43,11 @@ class CartController extends Controller
         if($count){
             return $count;
         }
+
         return response()->json(['Message'=>'Total Count is'. $count]);
+    }
+    public function cartData($id){
+        return user::find($id)->showCartData;
     }
 
 }

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { faUser,faKey} from '@fortawesome/free-solid-svg-icons';
+import { faUser,faKey,faStore} from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
 import { authService } from 'src/app/Services/auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnInit {
   faUser= faUser;
   faKey=faKey;
+  faStore=faStore;
   loginNotification:boolean=false;
   logoutNotification:boolean=false;
   userId:number=0;

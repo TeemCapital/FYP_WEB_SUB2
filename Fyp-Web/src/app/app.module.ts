@@ -13,7 +13,6 @@ import { CartComponent } from './SavedItems/cart/cart.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './SavedItems/favourite/favourite.component';
 import { PaymentsComponent } from './payments/payments.component';
-import { productGuardService } from './guards/products-guard.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,7 @@ import { productGuardService } from './guards/products-guard.service';
     FormsModule
 
   ],
-  providers: [productGuardService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

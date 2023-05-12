@@ -31,15 +31,14 @@ class userController extends Controller
     public function register(Request $request){
         $validator= Validator::make($request->all(),[
             'name'=>'required',
-            'storeName'=>'required | unique:users',
+            'storeName'=>'required ',
             'email'=>'required',
-            'password'=>'required'
+            'password'=>'required',
         ]);
         try{
             $input=$request->all();
             $input['password']=bcrypt($input['password']);
             $user=User::create($input);
-
             $success['token']=$user->createToken('MyApp')->plainTextToken;
             $success['name']=$user->name;
             $success['storeName']=$user->storeName;
@@ -52,7 +51,7 @@ class userController extends Controller
         }
         catch (\Illuminate\Database\QueryException $exception) {
             // Check if the error is a duplicate entry error
-            if ($exception->errorInfo[1] == 1062) { // 1062 is the error code for duplicate entry
+            if ($exception->errorInfo[1] == 1062 && $request->storeName!=0) { // 1062 is the error code for duplicate entry
                 // Return error response
                 return response()->json([
                     'message' => 'Email or Store Name Already Exists',
@@ -91,25 +90,78 @@ class userController extends Controller
     //             return response()->json(['error'=>"oops something went wrong"],status:409);
     //         }
     //     }
-    public function login(Request $request){
+    // public function login(Request $request){
 
-        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-             /** @var \App\Models\MyUserModel $user **/
-            $user=Auth::user();
-            $success['token']=$user->createToken('MyApp')->plainTextToken;
-            $success['name']=$user->name;
-            $success['id']=$user->id;
-            $response=[
-                'success'=>true,
-                'data'=>$success,
-                'manage'=>'User loggedIn Successfully'
-            ];
-            return response()->json($response,200);
-        }else{
-            return response()->json(['error'=>"oops something went wrong"],status:409);
+    //     if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+    //          /** @var \App\Models\MyUserModel $user **/
+    //         $user=Auth::user();
+    //         $success['token']=$user->createToken('MyApp')->plainTextToken;
+    //         $success['name']=$user->name;
+    //         $success['id']=$user->id;
+    //         $response=[
+    //             'success'=>true,
+    //             'data'=>$success,
+    //             'manage'=>'User loggedIn Successfully'
+    //         ];
+    //         return response()->json($response,200);
+    //     }else{
+    //         return response()->json(['error'=>"Wrong credentials"],status:409);
 
-        }
+    //     }
+    // }
+//     public function login(Request $request)
+// {
+//     $credentials = $request->only('email', 'password');
+//     // Check if the request includes the storeName field
+//     if ($request->has('storeName')) {
+//         $credentials['storeName'] = $request->storeName;
+//     }
+//     if (Auth::attempt($credentials)) {
+//         /** @var \App\Models\MyUserModel $user **/
+//         $user = Auth::user();
+//         $success['token'] = $user->createToken('MyApp')->plainTextToken;
+//         $success['name'] = $user->name;
+//         $success['id'] = $user->id;
+//         $response = [
+//             'success' => true,
+//             'data' => $success,
+//             'manage' => 'User logged in successfully'
+//         ];
+//         return response()->json($response, 200);
+//     } else {
+//         return response()->json(['error' => "Wrong credentials"], 409);
+//     }
+// }
+public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+    // Check if the request includes the storeName field
+    if ($request->has('storeName')) {
+        $credentials['storeName'] = $request->storeName;
     }
+    if (Auth::attempt($credentials)) {
+        /** @var \App\Models\MyUserModel $user **/
+        $user = Auth::user();
+
+        // Check if the user has a storeName stored in the database
+        if ($user->storeName && !$request->has('storeName')) {
+            return response()->json(['error' => 'Login with another account'], 409);
+        }
+
+        $success['token'] = $user->createToken('MyApp')->plainTextToken;
+        $success['name'] = $user->name;
+        $success['id'] = $user->id;
+        $response = [
+            'success' => true,
+            'data' => $success,
+            'manage' => 'User logged in successfully'
+        ];
+        return response()->json($response, 200);
+    } else {
+        return response()->json(['error' => 'Wrong credentials'], 409);
+    }
+}
+
     public function logout(Request $request){
         if($request->user()){
             $request->user()->currentAccessToken()->delete();

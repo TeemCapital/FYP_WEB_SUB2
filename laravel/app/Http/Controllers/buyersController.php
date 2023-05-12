@@ -53,11 +53,11 @@ class buyersController extends Controller
     public function userLogin(Request $request){
 
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-             /** @var \App\Models\MyUserModel $user **/
-            $user=Auth::user();
-            $success['token']=$user->createToken('MyApp')->plainTextToken;
-            $success['username']=$user->username;
-            $success['id']=$user->id;
+                     /** @var \App\Models\Buyer $buyer **/
+            $buyer=Auth::user();
+            $success['token']=$buyer->createToken('MyApp')->plainTextToken;
+            $success['username']=$buyer->username;
+            $success['id']=$buyer->id;
             $response=[
                 'success'=>true,
                 'data'=>$success,

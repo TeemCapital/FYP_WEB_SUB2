@@ -22,13 +22,14 @@ export class CartComponent implements OnInit,OnDestroy {
   Productquantity!:number;
   finalAmount:number=0;
   userId:any=localStorage.getItem('UID');
+  buyerId:any=localStorage.getItem('BID');
   checkOutNotification:boolean=false;
 
   constructor(private prodServ:ProductsServiceService,private router:Router,private http:HttpClient, private httpServ:HttpServicesService,private authSer:authService) { }
 
   ngOnInit(): void {
     console.log("The result is"+this.authSer.loggedIn);
-    this.http.get<any>(`${this.httpServ.testUrl}/showCart`).subscribe(
+    this.http.get<any>(`${this.httpServ.testUrl}/buyer/${this.buyerId}/products`).subscribe(
         (res)=>{this.MenproductData.push(...res)
         console.log(this.MenproductData)
         this.MenproductData.forEach(element => {

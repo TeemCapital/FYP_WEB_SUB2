@@ -16,6 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     SavedItemsRoutingModule,
     FontAwesomeModule
-  ]
+  ],
+  providers:[]
 })
+
 export class SavedItemsModule { }

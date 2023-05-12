@@ -4,15 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class authService{
-
+  buyerId:any=localStorage.getItem('BID')
   loggedIn:boolean=false;
 
   logIn(){
-    this.loggedIn=true;
+    if(this.buyerId){
+      this.loggedIn=true;
+    }
     console.log("login worked")
   }
   logOut(){
-   this.loggedIn=false
+    if(!this.buyerId){
+      this.loggedIn=false
+    }
    console.log("logout worked")
   }
   isAutheticated(){

@@ -30,7 +30,7 @@ export class UserLoginComponent implements OnInit {
     })
   }
   submit(data:any){
-    this.http.post<any>(`${this.httpServ.testUrl}/userLogin`,data).subscribe(
+    this.http.post<any>(`${this.httpServ.testUrl}/login`,data).subscribe(
       (res)=>{console.log(res.data),localStorage.setItem('Token',res.data.token),localStorage.setItem('BID',res.data.id),this.userId=res.data.id
       ,console.log(this.userId)
     },
@@ -45,11 +45,12 @@ export class UserLoginComponent implements OnInit {
       ()=>{
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.authSer.logIn()
+        console.log(this.authSer.isAutheticated())
         this.loginNotification=true;
         setTimeout(() => {
           this.httpServ.userId=this.userId;
-          this.router.navigate([`/${this.userId}/payments`,])
-          this.isLoggedIn=true;
+          this.router.navigate([`/home`])
+          window.location.reload();
           this.adminLogin.next(this.isLoggedIn)
           this.httpServ.isLoggedIn=this.isLoggedIn;
         }, 2000);

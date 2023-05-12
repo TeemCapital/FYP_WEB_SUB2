@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
   totalAmount:number=0;
   newPrice:any;
   data:any;
-
+  buyerId:any=localStorage.getItem('BID')
 
 
   products:Products[]=[];
@@ -47,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.cart=true
     this.products[0].quantity=this.quantity;
-    this.http.post<any>(`${this.httpServ.testUrl}/cart`,this.products[0]).subscribe((res)=>(console
+    this.http.post<any>(`${this.httpServ.testUrl}/cart`,{...this.products[0],user_id:+this.buyerId}).subscribe((res)=>(console
       .log(res)))
     console.log(this.prodServ.cartProduct)
     this.http.get<number>(`${this.httpServ.testUrl}/getProductCount`).subscribe(
