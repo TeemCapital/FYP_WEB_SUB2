@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-12 my-5" *ngFor="let product of products | filter:searchKey:'title'" style="width: 18rem;" >
       <div class="card shadow" >
-        <img src={{product.imagepath}} class="img-fluid" alt="card-image">
+        <img src={{product.imagepath}} style="height:200px" class="img-fluid" alt="card-image">
         <div class="card-body">
           <div>
           <h6 class="card-title">{{product.title}}</h6>

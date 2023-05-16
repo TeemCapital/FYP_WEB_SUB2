@@ -9,6 +9,7 @@ import { AccountsRoutingModule } from './accounts-routing.module';
 import { UserSignupComponent } from './User/user-signup/user-signup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { AddressComponent } from './address/address.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     UserLoginComponent,
-    UserSignupComponent
+    UserSignupComponent,
+    AddressComponent
   ],
   imports: [
     CommonModule,

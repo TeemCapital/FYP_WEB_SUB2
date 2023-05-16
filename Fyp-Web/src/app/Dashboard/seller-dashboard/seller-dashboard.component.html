@@ -19,8 +19,7 @@
   </div>
 </div>
 
-<div class="container mt-3" *ngIf="showProduct.length >= 1">
-  <h1 class="bg-primary text-white p-2 rounded text-center">Products Dashboard <fa-icon [icon]="fasmile"></fa-icon></h1>
+ <div class="container mt-3" *ngIf="showProduct.length >= 1">
   <div class="row mt-5 border rounded p-3 shadow"  *ngFor="let product of showProduct;let i=index">
     <div class="col-md-6" >
       <img src={{product.imagepath}}   class="img-fluid"  alt="">

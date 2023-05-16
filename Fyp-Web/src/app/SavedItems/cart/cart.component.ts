@@ -1,3 +1,4 @@
+import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 import { ProductsModel, CartModel } from './../../Services/products.model';
 import { ProductsServiceService } from '../../Services/products-service.service';
@@ -25,22 +26,23 @@ export class CartComponent implements OnInit,OnDestroy {
   buyerId:any=localStorage.getItem('BID');
   checkOutNotification:boolean=false;
 
+  loadingData:boolean=true;
   constructor(private prodServ:ProductsServiceService,private router:Router,private http:HttpClient, private httpServ:HttpServicesService,private authSer:authService) { }
 
   ngOnInit(): void {
     console.log("The result is"+this.authSer.loggedIn);
-    this.http.get<any>(`${this.httpServ.testUrl}/buyer/${this.buyerId}/products`).subscribe(
+    this.http.get<any>(`${this.httpServ.testUrl}/buyer/${this.buyerId}/products`).pipe(
+      finalize(()=>{
+          this.loadingData=false;
+      })
+    ).subscribe(
         (res)=>{this.MenproductData.push(...res)
         console.log(this.MenproductData)
         this.MenproductData.forEach(element => {
         this.finalAmount=this.finalAmount+element.totalPrice;
       }); }
     )
-    console.log(this.MenproductData.length)
-
-    console.log(this.finalAmount,"After product add")
   }
-
   delete(i:number,productData:any){
     this.MenproductData.splice(i,1)
     this.http.delete(`${this.httpServ.testUrl}/delete/`+productData.id).subscribe((res)=>{

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <h1 class="bg-dark rounded p-3 text-white text-center my-3">Address Details</h1>
+    <div class="col-md-6 mx-auto">
+      <form class="border p-3 rounded shadow">
+        <label class="form-label " for="Address"><b>Address Details:</b></label>
+        <input [(ngModel)]="address" [ngModelOptions]="{standalone: true}" placeholder="House#,Area name,City name" type="text" class="form-control">
+        <button class="btn btn-dark mt-2" (click)="getData()">Done</button>
+      </form>
+    </div>
+  </div>
+</div>

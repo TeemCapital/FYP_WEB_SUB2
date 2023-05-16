@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\buyersController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ordersController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userController;
 use Illuminate\Http\Request;
@@ -31,17 +32,11 @@ Route::post('login',[userController::class,'login']);
 Route::post('register',[userController::class,'register']);
 Route::get('show/{id}',[ProductController::class,'showDetail']);
 Route::post('cart',[CartController::class,'cart']);
-Route::get('showCart',[CartController::class,'showCart']);
 Route::get('totalAmount',[CartController::class,'totalAmount']);
 Route::get('getProductCount',[CartController::class,'getProductCount']);
 Route::delete('delete/{id}',[CartController::class,'deleteItem']);
 Route::delete('deleteProduct/{id}',[ProductController::class,'delete']);
 Route::post('/logout',[userController::class,'logout']);
-
-
-Route::post('/registerBuyer',[buyersController::class,'registerBuyer']);
-Route::post('/userLogin',[buyersController::class,'userLogin']);
-Route::post('/userLogout',[buyersController::class,'userLogout']);
-
-
 Route::get('buyer/{id}/products',[CartController::class,'cartData']);
+Route::get('showOrders',[ordersController::class,'showOrders']);
+Route::post('placeOrder',[CartController::class,'placeOrder']);

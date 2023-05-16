@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\cart;
 use App\Models\User;
+use App\Models\order;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -21,9 +22,6 @@ class CartController extends Controller
         $p->imagepath=$request->imagepath;
         $p->save();
     }
-    function showCart(){
-        return cart::all();
-    }
     function deleteItem($id){
         if($id){
             cart::find($id)->delete();
@@ -39,15 +37,28 @@ class CartController extends Controller
         return response()->json(["Message: Something went wrong"]);
     }
     public function getProductCount(){
-        $count =cart::count('title');
+        $count= cart::count('title');
         if($count){
             return $count;
         }
-
         return response()->json(['Message'=>'Total Count is'. $count]);
     }
     public function cartData($id){
         return user::find($id)->showCartData;
+    }
+
+    public function placeOrder(Request $request){
+        $order=new order();
+        $order->user_id=$request->user_id;
+        $order->title=$request->title;
+        $order->category=$request->category;
+        $order->price=$request->price;
+        $order->address=$request->address;
+        $order->payment_method=$request->payment_method;
+        $order->save();
+        if($order){
+            return response()->json(["Order"=>"Placed Successfully"]);
+        }
     }
 
 }

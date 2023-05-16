@@ -33,17 +33,14 @@
   </div>
   <div class="row">
     <div class="col-md-8 mx-auto">
-      <span class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle mx-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Payment Method
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-          <li><a class="dropdown-item " style="cursor: pointer;" ><fa-icon class="mx-1" [icon]="faTruck"></fa-icon>Cash On Delivery</a></li>
-          <li><a class="dropdown-item"  style="cursor: pointer;" ><fa-icon class="mx-1" [icon]="faCreditCard"></fa-icon> Pay Online</a></li>
-
-        </ul>
-      </span>
-      <a class="btn btn-danger mx-auto "><fa-icon [icon]="faArrow" ></fa-icon> Place Order</a>
+      <div class="my-3">
+        <label class="form-label "><b>Payment method</b>
+          <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label>
+          <select class="form-select" [(ngModel)]="selectedPaymentMethod" name="category" aria-label="Default select example">
+            <option *ngFor="let payment of paymentMethod" [value]="paymentMethod">{{payment}}</option>
+          </select>
+      </div>
+      <a class="btn btn-danger mx-auto " (click)="placeOrder()"><fa-icon [icon]="faArrow" ></fa-icon> Place Order</a>
       <a class="btn btn-dark mx-md-3 mx-sm-1" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
       <span class="bg-danger text-white rounded p-3 ">Total:{{finalAmount | currency}}</span>
     </div>

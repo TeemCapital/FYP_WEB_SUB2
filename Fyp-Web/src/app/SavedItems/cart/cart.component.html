@@ -1,4 +1,3 @@
-
 <div class="alert alert-danger mt-2" *ngIf="checkOutNotification==true" role="alert">
   You are being redirected to checkout
 </div>
@@ -7,9 +6,11 @@
     <div class="col-md-12 p-3 text-center rounded">
         <h1 class="text-white"><strong>YOUR CART</strong></h1>
     </div>
-
   </div>
   <div  class="row mt-5 rounded border p-5 shadow" *ngFor="let product of MenproductData; let i=index">
+    <div *ngIf="loadingData==true && MenproductData.length" class="spinner-border text-dark ms-5 my-5"  role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
     <div class="col-md-2" >
       <img src="{{product.imagepath}}" class="img-fluid" alt="">
     </div>
@@ -34,7 +35,7 @@
   </div>
   <div class="row my-auto">
     <div class="col-md-6 checkout my-5">
-      <a class="btn btn-danger mx-auto" (click)="checkOut()"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
+      <a class="btn btn-danger mx-auto" routerLink="../../accounts/userInfo"><fa-icon [icon]="faArrow" ></fa-icon> Proceed to Checkout</a>
       <a class="btn btn-dark mx-3" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
     </div>
     <div class="col-md-6">
@@ -45,7 +46,7 @@
 </div>
 
 
-<div class="container" *ngIf="!MenproductData.length">
+<div class="container" *ngIf="!MenproductData.length && loadingData==false">
   <div class="row">
     <div class="col-md-6 text-center my-auto ">
       <h4 class="bold">YOUR CART IS CURRENTLY EMPTY!</h4>
