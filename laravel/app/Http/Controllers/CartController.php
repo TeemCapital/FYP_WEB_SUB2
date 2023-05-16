@@ -12,6 +12,7 @@ class CartController extends Controller
     function cart(Request $request){
         $p=new cart();
         $p->user_id=$request->user_id;
+        $p->seller_id=$request->seller_id;
         $p->title=$request->title;
         $p->category=$request->category;
         $p->description=$request->description;
@@ -50,6 +51,7 @@ class CartController extends Controller
     public function placeOrder(Request $request){
         $order=new order();
         $order->user_id=$request->user_id;
+        $order->seller_id=$request->seller_id;
         $order->title=$request->title;
         $order->category=$request->category;
         $order->price=$request->price;

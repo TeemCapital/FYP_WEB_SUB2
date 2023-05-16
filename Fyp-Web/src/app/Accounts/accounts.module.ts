@@ -18,7 +18,7 @@ import { AddressComponent } from './address/address.component';
     SignupComponent,
     UserLoginComponent,
     UserSignupComponent,
-    AddressComponent
+    AddressComponent,
   ],
   imports: [
     CommonModule,

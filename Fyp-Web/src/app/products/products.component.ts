@@ -30,13 +30,15 @@ export class ProductsComponent implements OnInit {
         })
       )
       .subscribe(
-        (res)=>{this.products=res}
+        (res)=>this.products=res,
         )
-    }
+
+      }
     if(this.url.includes('/women')){
       this.http.get<any>(`${this.httpServe.testUrl}/showWomenProducts`).pipe(
         finalize(()=>{
           this.setBooleantofalse()
+          console.log(this.products)
         })
       ).subscribe(
           (res)=>(this.products=res)

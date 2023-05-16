@@ -7,6 +7,7 @@
 <div class="alert alert-primary my-2" role="alert" *ngIf="welcomeNoti==true">
 <h5 class="text-center">Welcome To Your Store Dashboard</h5>
 </div>
+
 <div class="container"  *ngIf="showProduct.length < 1">
   <div class="row  text-center">
     <div class="col-md-6 my-auto">
@@ -19,7 +20,11 @@
   </div>
 </div>
 
+
  <div class="container mt-3" *ngIf="showProduct.length >= 1">
+  <div>
+    <h1 class="bg-primary p-3 rounded text-center text-white"> Your Products <fa-icon [icon]="fasmile"></fa-icon></h1>
+  </div>
   <div class="row mt-5 border rounded p-3 shadow"  *ngFor="let product of showProduct;let i=index">
     <div class="col-md-6" >
       <img src={{product.imagepath}}   class="img-fluid"  alt="">

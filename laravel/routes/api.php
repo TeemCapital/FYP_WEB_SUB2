@@ -38,5 +38,5 @@ Route::delete('delete/{id}',[CartController::class,'deleteItem']);
 Route::delete('deleteProduct/{id}',[ProductController::class,'delete']);
 Route::post('/logout',[userController::class,'logout']);
 Route::get('buyer/{id}/products',[CartController::class,'cartData']);
-Route::get('showOrders',[ordersController::class,'showOrders']);
+Route::get('{id}/showOrders',[ordersController::class,'showOrders']);
 Route::post('placeOrder',[CartController::class,'placeOrder']);

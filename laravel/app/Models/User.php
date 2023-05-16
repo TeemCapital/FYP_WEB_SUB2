@@ -43,13 +43,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function data(){
-        return $this->hasMany('App\Models\product');
+        return $this->hasMany('App\Models\product','seller_id');
     }
     public function showCartData(){
         return $this->hasMany('App\Models\cart');
     }
-    public function orders(){
-        return $this->hasMany('App\Models\order');
-
+    public function myOrders(){
+        return $this->hasMany('App\Models\order','user_id');
+    }
+    public function ordersForMe(){
+        return $this->hasMany('App\Models\order','seller_id');
     }
 }

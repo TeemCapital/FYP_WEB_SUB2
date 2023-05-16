@@ -37,7 +37,7 @@ export class ManageProductsComponent implements OnInit {
     formData.append('price',data.price),
     formData.append('category',this.selectedCategory),
     formData.append('image',this.selectedImage),
-    formData.append('user_id',this.userId),
+    formData.append('seller_id',this.userId),
     console.log(formData)
     this.httpClient.post<any>(`${this.http.testUrl}/add`,formData).subscribe(
       (res)=>{

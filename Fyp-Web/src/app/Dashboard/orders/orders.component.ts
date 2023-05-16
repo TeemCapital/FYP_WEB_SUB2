@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpServicesService } from 'src/app/Services/http-services.service';
 
 @Component({
   selector: 'app-orders',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
+  userId:any=localStorage.getItem('UID')
+  orders!:any[];
+  constructor(private httpSer:HttpClient,private httpService:HttpServicesService) { }
 
-  constructor() { }
 
   ngOnInit(): void {
+    this.httpSer.get<any>(`${this.httpService.testUrl}/${this.userId}/showOrders`).subscribe(
+      (res)=>(console.log(res))
+
+    )
   }
 
 }
