@@ -40,3 +40,6 @@ Route::post('/logout',[userController::class,'logout']);
 Route::get('buyer/{id}/products',[CartController::class,'cartData']);
 Route::get('{id}/showOrders',[ordersController::class,'showOrders']);
 Route::post('placeOrder',[CartController::class,'placeOrder']);
+
+
+Route::delete('{id}/deleteCartItems',[CartController::class,'deleteCartItems']);

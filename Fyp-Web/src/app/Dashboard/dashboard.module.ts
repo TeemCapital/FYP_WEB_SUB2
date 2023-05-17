@@ -19,6 +19,7 @@ import { OrdersComponent } from './orders/orders.component';
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
+
     FontAwesomeModule
   ]
 })

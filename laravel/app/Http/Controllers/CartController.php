@@ -52,15 +52,29 @@ class CartController extends Controller
         $order=new order();
         $order->user_id=$request->user_id;
         $order->seller_id=$request->seller_id;
+        $order->buyer_email_address=$request->buyer_email_address;
         $order->title=$request->title;
         $order->category=$request->category;
         $order->price=$request->price;
         $order->address=$request->address;
+        $order->image=$request->image;
+        $order->imagepath=$request->imagepath;
         $order->payment_method=$request->payment_method;
         $order->save();
         if($order){
             return response()->json(["Order"=>"Placed Successfully"]);
         }
     }
+
+
+    public function deleteCartItems($id)
+    {
+        $user = User::find($id);
+        if($user){
+            $user->showCartData()->delete();
+            return response()->json(["Cart Data"=>"deleted"]);
+        }
+    }
+
 
 }

@@ -142,7 +142,6 @@ public function login(Request $request)
     if (Auth::attempt($credentials)) {
         /** @var \App\Models\MyUserModel $user **/
         $user = Auth::user();
-
         // Check if the user has a storeName stored in the database
         if ($user->storeName && !$request->has('storeName')) {
             return response()->json(['error' => 'Login with another account'], 409);

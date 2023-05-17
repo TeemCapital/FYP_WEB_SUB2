@@ -68,7 +68,6 @@ export class AppComponent implements OnInit{
     this.searchTerm = (event.target as HTMLInputElement).value;
     this.prodServ.search.next(this.searchTerm);
   }
-
   getCartCount():void{
     this.http.get<number>(`${this.httpServ.testUrl}/getProductCount`).subscribe(
       res=>{
@@ -95,32 +94,11 @@ export class AppComponent implements OnInit{
       setTimeout(() => {
           this.logoutNotification=false
           this.buyerLoggedIn=false
-          this.router.navigate(['../'])
+          this.router.navigate(['home'])
           window.location.reload();
 
       }, 2000);
     }
 
   }
-  // buyerLogout() {
-  //   this.http.post<any>(`${this.httpServ.testUrl}/logout`,this.token).subscribe(
-  //     (res)=>{
-  //       console.log(res)
-  //     }
-  //   )
-  //   if(this.token && this.storeId){
-  //     localStorage.removeItem('Token')
-  //     localStorage.removeItem('UID')
-  //     this.authSer.logOut();
-  //     this.isLoggedIn=false;
-  //     this.adminLogin.next(this.isLoggedIn)
-  //     this.logoutNotification=true;
-  //     setTimeout(() => {
-  //         this.logoutNotification=false
-  //         this.router.navigate(['/home'])
-
-  //     }, 2000);
-  //   }
-
-  // }
 }

@@ -15,10 +15,13 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('seller_id');
+            $table->string('buyer_email_address');
             $table->string('title');
             $table->integer('price');
             $table->string('category');
             $table->string('payment_method');
+            $table->string('image');
+            $table->string('imagepath');
             $table->string('address');
             $table->timestamps();
         });

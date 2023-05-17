@@ -10,12 +10,14 @@ import { ProductsServiceService } from 'src/app/Services/products-service.servic
 export class AddressComponent implements OnInit {
   address!:string;
   userId:any=localStorage.getItem('BID');
+  buyer_email_address!:string;
   constructor(private productSer:ProductsServiceService,private router:Router) { }
 
   ngOnInit(): void {
   }
   getData(){
     this.productSer.address=this.address;
+    this.productSer.buyer_email_address=this.buyer_email_address;
     this.router.navigate([`${this.userId}/payments`])
   }
 }
