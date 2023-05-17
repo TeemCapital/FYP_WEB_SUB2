@@ -4,7 +4,7 @@ import { faHeart, faShoppingBag, faShoppingBasket,faStar } from '@fortawesome/fr
 import { ProductsServiceService } from './../../Services/products-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, count, map } from 'rxjs';
+import { Observable, count, finalize, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Products } from 'src/app/Interface/products';
 @Component({
@@ -26,6 +26,7 @@ export class ProductDetailsComponent implements OnInit {
   newPrice:any;
   data:any;
   buyerId:any=localStorage.getItem('BID')
+  favNoti:boolean=false;
 
 
   products:Products[]=[];
@@ -60,16 +61,21 @@ export class ProductDetailsComponent implements OnInit {
       this.cart=false
     }, 3000);
   }
+
   Addtofav(){
-    // this.fav=true
-    // this.activatedroute.paramMap.subscribe((param)=>{
-    //   this.productid=param.get('id')
-    //   this.product=this.prodServ.fetchedProducts.find(x=>x.id==this.productid)
-    //   this.prodServ.favProduct=this.product;
-    //   setTimeout(() => {
-    //     this.fav=false
-    //   }, 3000);
-    // })
+  this.http.post<any>(`${this.httpServ.testUrl}/addToFavourites`,{...this.products[0],user_id:this.buyerId}).pipe(
+    finalize(()=>{
+      this.favNoti=true
+      setTimeout(() => {
+        this.favNoti=false
+      }, 2000);
+    })
+  ).subscribe(
+    (res)=>{
+      console.log(res)
+    }
+
+  )
 }
 
 increment(){

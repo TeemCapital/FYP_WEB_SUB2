@@ -11,27 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('favourites', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('seller_id');
-            $table->string('buyer_email_address');
-            $table->string('buyer_contact_number');
             $table->string('title');
-            $table->integer('price');
-            $table->string('category');
-            $table->string('payment_method');
-            $table->string('image');
-            $table->string('imagepath');
-            $table->string('address');
+            $table->string('description');
+            $table->integer('Price');
+            $table->string('image')->nullable(true);
+            $table->string('imagepath')->default(0);
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('favourites');
     }
 };

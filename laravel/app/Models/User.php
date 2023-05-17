@@ -54,4 +54,7 @@ class User extends Authenticatable
     public function ordersForMe(){
         return $this->hasMany('App\Models\order','seller_id');
     }
+    public function showFavourites(){
+        return $this->hasMany('App\Models\favourite');
+    }
 }

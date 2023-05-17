@@ -9,27 +9,8 @@ use Illuminate\Support\Facades\Validator;
 
 class userController extends Controller
 {
-    // public function register(Request $request){
-    //     // this line would validate all the requests
-    //     $validator=Validator::make($request->all(),[
-    //     // Here we would define the rules of validation
-    //     'name'=>'required|unique:users',
-    //     'email'=>'required',
-    //     'password'=>'required',
-    //     ]);
-    //     if($validator->fails()){
-    //         return response()->json(['error'=>$validator->errors()->all()],status:409);
-    //     }
-    //     $p=new User;
-    //     $p->name=$request->name;
-    //     $p->email=$request->email;
-    //     $p->password=encrypt($request->password);
-    //     $p->save();
-    //     return response()->json(['messaeg'=>"successfully Registered"],status:409);
-    // }
-
     public function register(Request $request){
-        $validator= Validator::make($request->all(),[
+        $validator = Validator::make($request->all(),[
             'name'=>'required',
             'storeName'=>'required ',
             'email'=>'required',
@@ -71,67 +52,6 @@ class userController extends Controller
 
 
     }
-
-    // public function login(Request $request){
-    //     $validator=Validator::make($request->all(),[
-    //         // Here we would define the rules of validation
-    //         'email'=>'required',
-    //         'password'=>'required',
-    //         ]);
-    //         if($validator->fails()){
-    //             return response()->json(['error'=>$validator->errors()->all()],status:409);
-    //         }
-    //         $user=User::where('email',$request->email)->get()->first();
-    //         $password=decrypt($user->password);
-    //         if($user && $password==$request->password){
-    //             return response()->json(['user'=>$user]);
-    //         }
-    //         else{
-    //             return response()->json(['error'=>"oops something went wrong"],status:409);
-    //         }
-    //     }
-    // public function login(Request $request){
-
-    //     if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-    //          /** @var \App\Models\MyUserModel $user **/
-    //         $user=Auth::user();
-    //         $success['token']=$user->createToken('MyApp')->plainTextToken;
-    //         $success['name']=$user->name;
-    //         $success['id']=$user->id;
-    //         $response=[
-    //             'success'=>true,
-    //             'data'=>$success,
-    //             'manage'=>'User loggedIn Successfully'
-    //         ];
-    //         return response()->json($response,200);
-    //     }else{
-    //         return response()->json(['error'=>"Wrong credentials"],status:409);
-
-    //     }
-    // }
-//     public function login(Request $request)
-// {
-//     $credentials = $request->only('email', 'password');
-//     // Check if the request includes the storeName field
-//     if ($request->has('storeName')) {
-//         $credentials['storeName'] = $request->storeName;
-//     }
-//     if (Auth::attempt($credentials)) {
-//         /** @var \App\Models\MyUserModel $user **/
-//         $user = Auth::user();
-//         $success['token'] = $user->createToken('MyApp')->plainTextToken;
-//         $success['name'] = $user->name;
-//         $success['id'] = $user->id;
-//         $response = [
-//             'success' => true,
-//             'data' => $success,
-//             'manage' => 'User logged in successfully'
-//         ];
-//         return response()->json($response, 200);
-//     } else {
-//         return response()->json(['error' => "Wrong credentials"], 409);
-//     }
-// }
 public function login(Request $request)
 {
     $credentials = $request->only('email', 'password');
@@ -146,7 +66,6 @@ public function login(Request $request)
         if ($user->storeName && !$request->has('storeName')) {
             return response()->json(['error' => 'Login with another account'], 409);
         }
-
         $success['token'] = $user->createToken('MyApp')->plainTextToken;
         $success['name'] = $user->name;
         $success['id'] = $user->id;

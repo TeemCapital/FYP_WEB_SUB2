@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\buyersController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\favouritesController;
 use App\Http\Controllers\ordersController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userController;
@@ -43,3 +44,8 @@ Route::post('placeOrder',[CartController::class,'placeOrder']);
 
 
 Route::delete('{id}/deleteCartItems',[CartController::class,'deleteCartItems']);
+
+Route::get('{id}/showFavourites',[favouritesController::class,'showFavourites']);
+Route::post('addToFavourites',[favouritesController::class,'addToFavourites']);
+
+Route::delete('{id}/deleteFav',[favouritesController::class,'deleteFav']);

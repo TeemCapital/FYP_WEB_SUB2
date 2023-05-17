@@ -10,8 +10,7 @@
       <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
         <label class="form-label">
           <b>Product title</b>
-          <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label
-        >
+          <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label>
         <input type="number" hidden name="seller_id" ngModel [value]="userId" >
         <input
           ngModel
