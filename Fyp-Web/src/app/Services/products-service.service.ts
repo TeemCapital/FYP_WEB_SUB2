@@ -23,6 +23,7 @@ export class ProductsServiceService {
 
   address!:string;
   buyer_email_address!:string;
+  buyer_contact_number!:string;
   public search = new BehaviorSubject<string>("");
 
 

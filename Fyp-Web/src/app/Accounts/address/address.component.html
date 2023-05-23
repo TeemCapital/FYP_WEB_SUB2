@@ -7,6 +7,8 @@
         <input [(ngModel)]="address" [ngModelOptions]="{standalone: true}" placeholder="House#,Area name,City name" type="text" class="form-control">
         <label class="form-label " for="buyer_email_address"><b>Email Address:</b></label>
         <input [(ngModel)]="buyer_email_address" [ngModelOptions]="{standalone: true}" required placeholder="123@gmail.com" type="email" class="form-control">
+        <label class="form-label " for="buyer_contact_number"><b>Contact Number:</b></label>
+        <input [(ngModel)]="buyer_contact_number" [ngModelOptions]="{standalone: true}" required placeholder="+921234567" type="text" class="form-control">
         <button class="btn btn-dark mt-2" (click)="getData()">Done</button>
       </form>
     </div>

@@ -21,6 +21,7 @@ export class PaymentsComponent implements OnInit {
   faCreditCard=faCreditCard;
   address!:string;
   buyer_email_address!:string;
+  buyer_contact_number!:string;
   paymentMethod:string[]=['Pay with card', 'Cash on Delivery']
   selectedPaymentMethod!:string;
   orderNoti:boolean=false;
@@ -29,6 +30,7 @@ export class PaymentsComponent implements OnInit {
   ngOnInit(): void {
     this.address=this.prodServ.address;
     this.buyer_email_address=this.prodServ.buyer_email_address;
+    this.buyer_contact_number=this.prodServ.buyer_contact_number;
 
     this.http.get<any>(`${this.httpSer.testUrl}/buyer/${this.buyerId}/products`).subscribe(
       (res)=>{
@@ -45,6 +47,7 @@ export class PaymentsComponent implements OnInit {
       for (let i = 0; i < this.products.length; i++) {
         const data = this.products[i];
         data.address=this.address;
+        data.buyer_contact_number=this.buyer_contact_number;
         data.buyer_email_address=this.buyer_email_address;
         data.payment_method=this.selectedPaymentMethod
         this.http.post<any>(`${this.httpSer.testUrl}/placeOrder`,data
