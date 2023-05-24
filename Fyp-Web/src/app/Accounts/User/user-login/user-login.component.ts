@@ -36,8 +36,8 @@ export class UserLoginComponent implements OnInit {
     },
       (error)=>{
         if(error){
-          this.invalidPass=true
-          setTimeout(() => {
+            this.invalidPass=true
+            setTimeout(() => {
             this.invalidPass=false
           }, 2000);
         }
@@ -57,5 +57,6 @@ export class UserLoginComponent implements OnInit {
         }, 2500);
       }
     )
+
   }
 }

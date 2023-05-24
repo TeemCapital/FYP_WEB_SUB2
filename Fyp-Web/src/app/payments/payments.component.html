@@ -42,9 +42,16 @@
             <option *ngFor="let payment of paymentMethod" [value]="paymentMethod">{{payment}}</option>
           </select>
       </div>
-      <a class="btn btn-danger mx-auto " (click)="placeOrder()"><fa-icon [icon]="faArrow" ></fa-icon> Place Order</a>
-      <a class="btn btn-dark mx-md-3 mx-sm-1" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
-      <span class="bg-danger text-white rounded p-3 ">Total:{{finalAmount | currency}}</span>
+
     </div>
   </div>
-</div>
+  <div class="container">
+    <div class="row mx-auto">
+      <div class="col-md-8 mx-auto">
+        <a class="btn btn-danger mx-2 my-xs-4" (click)="placeOrder()"><fa-icon [icon]="faArrow" ></fa-icon> Place Order</a>
+        <a class="btn btn-dark mx-2" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
+        <span class="bg-danger text-white rounded p-3 ">Total:{{finalAmount | currency}}</span>
+      </div>
+      </div>
+  </div>
+
