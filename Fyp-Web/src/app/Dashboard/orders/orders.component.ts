@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
+import { productGuardService } from 'src/app/guards/products-guard.service';
+import { ProductsServiceService } from 'src/app/Services/products-service.service';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -13,7 +15,8 @@ export class OrdersComponent implements OnInit {
   orders!:any[];
   loadingData:boolean=false;
   faTruckPickup=faTruck;
-  constructor(private httpSer:HttpClient,private httpService:HttpServicesService) { }
+  showData:boolean=false;
+  constructor(private httpSer:HttpClient,private httpService:HttpServicesService,private productSer:ProductsServiceService) { }
 
 
   ngOnInit(): void {
@@ -21,10 +24,17 @@ export class OrdersComponent implements OnInit {
     this.httpSer.get<any>(`${this.httpService.testUrl}/${this.userId}/showOrders`).pipe(
       finalize(()=>{
         this.loadingData=false
+
       })
     )
     .subscribe(
-      (res)=>(this.orders=res)
+      (res)=>{
+        this.orders=res
+        if(res){
+          this.showData=true;
+        }
+      }
+
 
     )
   }

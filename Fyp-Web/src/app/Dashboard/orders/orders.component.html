@@ -1,13 +1,13 @@
 <div class="container">
-  <h1 class="bg-primary p-3 text-center rounded text-white my-3">Your Orders</h1>
   <div class="row">
     <div *ngIf="loadingData==true" class="spinner-border text-primary mx-auto my-5"  role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  <div class="row">
-    <div class="card mx-2 my-2" style="width: 20rem;" *ngFor="let order of orders">
-      <img src="{{order.imagepath}}" class="card-img-top" alt="...">
+  <div class="row" *ngIf="showData==true">
+    <h1 class="bg-primary p-3 text-center rounded text-white my-3">Your Orders</h1>
+    <div class="card mx-2 my-2 shadow" style="width: 20rem;" *ngFor="let order of orders">
+      <img src="{{order.imagepath}}" class="card-img-top" alt="Product image">
       <div class="card-body">
         <h5 class="card-title">{{order.title}}</h5>
         <p class="card-title">E-mail:<b>{{order.buyer_email_address}}</b></p>
@@ -17,6 +17,17 @@
         <p class="card-text">Contact Number:{{order.buyer_contact_number}}</p>
         <a href="#" class="btn btn-danger"><fa-icon [icon]="faTruckPickup"></fa-icon>Dispatched</a>
       </div>
+    </div>
+  </div>
+
+</div>
+<div class="container" *ngIf="orders.length < 1">
+  <div class="row">
+    <div class="col-md-6 my-auto">
+      <h1>No active orders at the moment</h1>
+    </div>
+    <div class="col-md-6">
+      <img src="assets/images/cart-img.png" class="img-fluid" alt="">
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ import { HttpServicesService } from './Services/http-services.service';
 import { ProductsServiceService } from './Services/products-service.service';
 import { Component, OnInit } from '@angular/core';
 import {faFacebook,faTwitter,faInstagram,faTelegram} from '@fortawesome/free-brands-svg-icons'
-import {faShoppingBasket,faUser,faHeart} from '@fortawesome/free-solid-svg-icons'
+import {faShoppingBasket,faUser,faHeart,faBook,faChalkboard,faArrowAltCircleLeft,faPlus} from '@fortawesome/free-solid-svg-icons'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 @Component({
@@ -14,6 +14,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   faFacebook= faFacebook;
+  faBook=faBook;
+  faPlus=faPlus;
+  faArrowAltCircleLeft=faArrowAltCircleLeft;
+  faChalkboard=faChalkboard;
   faInstagram= faInstagram;
   faTwitter=faTwitter ;
   faTelegram=faTelegram ;
@@ -36,6 +40,8 @@ export class AppComponent implements OnInit{
 
   buyerLoggedIn:boolean=false;
   public searchTerm!:string;
+
+  ordersCount!:number;
 
   constructor(private router:Router,private httpServ:HttpServicesService,private prodServ:ProductsServiceService,private httpServe:HttpServicesService,private authSer:authService,private http:HttpClient){
 

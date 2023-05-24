@@ -44,6 +44,7 @@ export class PaymentsComponent implements OnInit {
       )
     }
     placeOrder(){
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       for (let i = 0; i < this.products.length; i++) {
         const data = this.products[i];
         data.address=this.address;

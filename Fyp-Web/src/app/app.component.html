@@ -46,6 +46,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="product/men">MEN</a></li>
               <li><a class="dropdown-item" routerLink="product/women">WOMEN</a></li>
+              <li><a class="dropdown-item" routerLink="product/kids">Kids</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -87,10 +88,10 @@
               <fa-icon class="mx-1" [icon]="faUser"></fa-icon>Account
             </a>
             <ul class="dropdown-menu" >
-              <li><a class="dropdown-item" routerLink="dashboard/:id/manage">Create a new Product</a></li>
-              <li><a class="dropdown-item" routerLink="dashboard/:id/dashboard">Product Dashboard</a></li>
-              <li><a class="dropdown-item "  style="cursor:pointer" routerLink="dashboard/:id/orders">Orders</a></li>
-              <li><a class="dropdown-item " (click)="logout()" style="cursor:pointer">Logout</a></li>
+              <li><a class="dropdown-item" routerLink="dashboard/:id/manage"><fa-icon class="me-2 "[icon]="faPlus"></fa-icon>Create a new Product</a></li>
+              <li><a class="dropdown-item" routerLink="dashboard/:id/dashboard"><fa-icon class="me-2 "[icon]="faChalkboard"></fa-icon>Product Dashboard</a></li>
+              <li><a class="dropdown-item "  style="cursor:pointer" routerLink="dashboard/:id/orders"><fa-icon class="me-2 "[icon]="faBook"></fa-icon> Orders</a></li>
+              <li><a class="dropdown-item " (click)="logout()" style="cursor:pointer"><fa-icon class="me-2 text-danger"[icon]="faArrowAltCircleLeft"></fa-icon>Logout</a></li>
             </ul>
           <li class="nav-item dropdown" *ngIf="buyerLoggedIn==true" >
             <a class="nav-link dropdown-toggle ms-1 btn btn-primary text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

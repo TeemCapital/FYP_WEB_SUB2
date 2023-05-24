@@ -28,6 +28,7 @@ Route::put('update',[ProductController::class,'update']);
 Route::delete('delete',[ProductController::class,'delete']);
 Route::get('show',[ProductController::class,'show']);
 Route::get('showWomenProducts',[ProductController::class,'showWomenProducts']);
+Route::get('showKidsProducts',[ProductController::class,'showKidsProducts']);
 Route::get('user/{id}/products',[ProductController::class,'sellerProductData']);
 Route::post('login',[userController::class,'login']);
 Route::post('register',[userController::class,'register']);

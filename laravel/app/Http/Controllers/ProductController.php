@@ -111,6 +111,13 @@ class ProductController extends Controller
         }
         return response()->json(['Message'=>"Something went wrong"]);
     }
+    public function showKidsProducts(){
+        $products=product::where('category','=','Kids')->get();
+        if($products){
+            return $products;
+        }
+        return response()->json(['Message'=>"Something went wrong"]);
+    }
     public function showDetail($id){
         $product= product::find($id);
 

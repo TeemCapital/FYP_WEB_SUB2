@@ -44,6 +44,16 @@ export class ProductsComponent implements OnInit {
           (res)=>(this.products=res)
           )
       }
+    if(this.url.includes('/kids')){
+      this.http.get<any>(`${this.httpServe.testUrl}/showKidsProducts`).pipe(
+        finalize(()=>{
+          this.setBooleantofalse()
+          console.log(this.products)
+        })
+      ).subscribe(
+          (res)=>(this.products=res)
+          )
+      }
       this.productSer.search.subscribe((val:any)=>{
       this.searchKey = val;
     })
