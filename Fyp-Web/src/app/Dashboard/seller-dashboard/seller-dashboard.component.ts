@@ -8,6 +8,7 @@ import { Products } from 'src/app/Interface/products';
 import {faSmile} from '@fortawesome/free-regular-svg-icons';
 import { Location } from '@angular/common';
 import { faSlack } from '@fortawesome/free-brands-svg-icons';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -24,6 +25,7 @@ export class SellerDashboardComponent implements OnInit {
   storeId=localStorage.getItem('UID');
   alert:boolean=false;
   welcomeNoti:boolean=false;
+  loadingData:boolean=true;
   constructor(private location:Location,private activatedRoute:ActivatedRoute,private prodServ:DashboardService,private womenSer:ProductsServiceService,private route:Router,private http:HttpClient,private httpServ:HttpServicesService,private router:Router) { }
 
   ngOnInit(): void {
@@ -38,7 +40,11 @@ export class SellerDashboardComponent implements OnInit {
       this.userId=param['id']
     })
     if(this.userId=this.storeId){
-      this.http.get<any>(`${this.httpServ.testUrl}/user/${this.userId}/products`).subscribe(
+      this.http.get<any>(`${this.httpServ.testUrl}/user/${this.userId}/products`).pipe(
+        finalize(()=>{
+          this.loadingData=false;
+        })
+      ).subscribe(
         (res)=>{
           this.showProduct=res
         }

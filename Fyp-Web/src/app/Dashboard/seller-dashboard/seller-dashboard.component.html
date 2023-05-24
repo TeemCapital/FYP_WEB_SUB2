@@ -8,7 +8,13 @@
 <h5 class="text-center">Welcome To Your Store Dashboard</h5>
 </div>
 
+
 <div class="container"  *ngIf="showProduct.length < 1">
+  <!-- <div class="row">
+    <div *ngIf="loadingData==true" class="spinner-border text-primary mx-auto my-5"  role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div> -->
   <div class="row  text-center">
     <div class="col-md-6 my-auto">
       <h1>No product Found! Want to create a new product?</h1>
@@ -24,6 +30,11 @@
  <div class="container mt-3" *ngIf="showProduct.length >= 1">
   <div>
     <h1 class="bg-primary p-3 rounded text-center text-white"> Your Products <fa-icon [icon]="fasmile"></fa-icon></h1>
+  </div>
+  <div class="row">
+    <div *ngIf="loadingData==true" class="spinner-border text-primary mx-auto my-5"  role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
   <div class="row mt-5 border rounded p-3 shadow"  *ngFor="let product of showProduct;let i=index">
     <div class="col-md-6" >

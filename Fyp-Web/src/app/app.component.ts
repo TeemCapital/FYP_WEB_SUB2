@@ -1,4 +1,4 @@
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, finalize } from 'rxjs';
 import { authService } from './Services/auth.service';
 import { HttpServicesService } from './Services/http-services.service';
 import { ProductsServiceService } from './Services/products-service.service';
@@ -77,7 +77,11 @@ export class AppComponent implements OnInit{
   }
 
   logout() {
-    this.http.post<any>(`${this.httpServ.testUrl}/logout`,this.token).subscribe(
+    this.http.post<any>(`${this.httpServ.testUrl}/logout`,this.token).pipe(
+      finalize(()=>{
+        this.router.navigate(['home'])
+      })
+    ).subscribe(
       (res)=>{
         console.log(res)
       }
@@ -94,9 +98,7 @@ export class AppComponent implements OnInit{
       setTimeout(() => {
           this.logoutNotification=false
           this.buyerLoggedIn=false
-          this.router.navigate(['home'])
           window.location.reload();
-
       }, 2000);
     }
 

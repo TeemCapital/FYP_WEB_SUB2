@@ -51,6 +51,7 @@ class CartController extends Controller
     public function placeOrder(Request $request){
         $order=new order();
         $order->user_id=$request->user_id;
+        $order->quantity=$request->quantity;
         $order->seller_id=$request->seller_id;
         $order->buyer_email_address=$request->buyer_email_address;
         $order->buyer_contact_number=$request->buyer_contact_number;

@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { faUser,faKey} from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { HttpServicesService } from 'src/app/Services/http-services.service';
-import { Subject } from 'rxjs';
+import { Subject, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-user-login',
@@ -45,15 +45,16 @@ export class UserLoginComponent implements OnInit {
       ()=>{
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.authSer.logIn()
-        console.log(this.authSer.isAutheticated())
         this.loginNotification=true;
         setTimeout(() => {
           this.httpServ.userId=this.userId;
-          this.router.navigate([`/home`])
-          window.location.reload();
+          this.router.navigate(['home'])
           this.adminLogin.next(this.isLoggedIn)
           this.httpServ.isLoggedIn=this.isLoggedIn;
         }, 2000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500);
       }
     )
   }
