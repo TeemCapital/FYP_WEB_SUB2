@@ -15,6 +15,7 @@ class CartController extends Controller
         $p->seller_id=$request->seller_id;
         $p->title=$request->title;
         $p->category=$request->category;
+        $p->size=$request->size;
         $p->description=$request->description;
         $p->price=$request->price;
         $p->quantity=$request->quantity;
@@ -52,6 +53,7 @@ class CartController extends Controller
         $order=new order();
         $order->user_id=$request->user_id;
         $order->quantity=$request->quantity;
+        $order->size=$request->size;
         $order->seller_id=$request->seller_id;
         $order->buyer_email_address=$request->buyer_email_address;
         $order->buyer_contact_number=$request->buyer_contact_number;

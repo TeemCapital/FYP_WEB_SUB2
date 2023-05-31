@@ -9,7 +9,7 @@ import {faSmile} from '@fortawesome/free-regular-svg-icons';
 import { Location } from '@angular/common';
 import { faSlack } from '@fortawesome/free-brands-svg-icons';
 import { finalize } from 'rxjs';
-
+import { faTshirt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-seller-dashboard',
   templateUrl: './seller-dashboard.component.html',
@@ -21,6 +21,7 @@ export class SellerDashboardComponent implements OnInit {
   showNotification:boolean=false;
   imageData:any;
   fasmile=faSmile;
+  faTshirt=faTshirt;
   userId!:any;
   storeId=localStorage.getItem('UID');
   alert:boolean=false;
@@ -30,8 +31,6 @@ export class SellerDashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.showProduct=this.prodServ.getCreatedProducts();
-    // console.log(this.showProduct)
     this.welcomeNoti=true;
     setTimeout(() => {
         this.welcomeNoti=false

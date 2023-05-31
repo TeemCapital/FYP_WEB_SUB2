@@ -7,7 +7,7 @@ import { Products } from '../Interface/products';
 import { authService } from '../Services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { finalize } from 'rxjs';
-
+import { faTshirt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   products!:Products[];
   test:any;
   url !:string;
+  faTshirt=faTshirt
   loadingData:boolean=true;
   searchKey:string ="";
   constructor(private authSer:authService,private router:Router,private productSer:ProductsServiceService,private httpServe:HttpServicesService,private activatedRoute:ActivatedRoute,private http:HttpClient) { }

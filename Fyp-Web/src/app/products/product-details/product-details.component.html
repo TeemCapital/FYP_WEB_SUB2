@@ -2,7 +2,7 @@
   Your Products has been added to your cart :)
   </div>
 <div *ngIf="favNoti==true" class="alert alert-primary mt-3" role="alert">
-  Your Product has been added to favourite 
+  Your Product has been added to favourite
   </div>
   <div class="container mt-5">
     <div class="row mt-5 border rounded p-3 shadow" *ngFor="let products of products" >
@@ -12,6 +12,7 @@
       <div class="col-md-6  my-auto">
         <h3 class="text-white bg-dark rounded p-3"><strong>{{products.title}}</strong></h3>
         <p><b>Description: {{products.description}}</b></p>
+        <span class="bg-success text-white p-1 rounded mb-2 " ><fa-icon class="me-2" [icon]="faTshirt"></fa-icon> <b>{{products.size}}</b></span>
         <h5 class="text-danger">Price: {{products.price  | currency}}</h5>
         <div class="row">
           <div class="col-md-3 my-2">

@@ -50,15 +50,20 @@
           class="form-control"
         />
         <div class="invalid-feedback">This isnt a valid response</div>
-        <label class="form-label"><b>category</b>
+        <label class="form-label"><b>Category</b>
           <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label>
           <select class="form-select" [(ngModel)]="selectedCategory" name="category" aria-label="Default select example">
             <option *ngFor="let category of category" [value]="category">{{category}}</option>
           </select>
+        <label class="form-label"><b>Size</b>
+          <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label>
+          <select class="form-select" [(ngModel)]="size" name="size" aria-label="Default select example">
+            <option *ngFor="let size of size" [value]="size">{{size}}</option>
+          </select>
 
         <div class="invalid-feedback">This isnt a valid response</div>
         <label>
-          <b> Enter Product Image Url</b>
+          <b>Enter Product Image Url</b>
           <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small>
         </label>
         <input required ngModel name="imaegpath" type="file" accept="image/*" (change)="onFileSelected($event)" class="form-control" />

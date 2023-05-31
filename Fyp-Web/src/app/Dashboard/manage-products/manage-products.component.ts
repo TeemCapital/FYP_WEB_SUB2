@@ -15,6 +15,7 @@ export class ManageProductsComponent implements OnInit {
   Product:any;
   value:any[]=[]
   category = ['Men', 'Women', 'Kids'];
+  size = ['XSmall','Small', 'Medium', 'Large','XLarge'];
   selectedCategory!: string;
   showNotification=false;
   userId:any=localStorage.getItem('UID')
@@ -26,7 +27,9 @@ export class ManageProductsComponent implements OnInit {
 
 
   onFileSelected(event:any) {
+
     this.selectedImage=<File>event.target.files[0]
+
   }
 
 
@@ -38,6 +41,7 @@ export class ManageProductsComponent implements OnInit {
     formData.append('category',this.selectedCategory),
     formData.append('image',this.selectedImage),
     formData.append('seller_id',this.userId),
+    formData.append('size',data.size),
     console.log(formData)
     this.httpClient.post<any>(`${this.http.testUrl}/add`,formData).subscribe(
       (res)=>{

@@ -5,6 +5,7 @@ export interface Products {
   category:string,
   description:string,
   quantity?:number;
+  size?:string;
   image:string
   imagepath:string;
   totalPrice?:number;

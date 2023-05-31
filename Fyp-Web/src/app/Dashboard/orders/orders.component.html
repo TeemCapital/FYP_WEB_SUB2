@@ -10,16 +10,16 @@
       <img src="{{order.imagepath}}" class="card-img-top" alt="Product image">
       <div class="card-body">
         <h5 class="card-title">{{order.title}}</h5>
-        <p class="card-title">E-mail:<b>{{order.buyer_email_address}}</b></p>
-        <p class="card-text">{{order.category}}</p>
-        <p class="card-text">Quantity: {{order.quantity}}x</p>
+        <p class="card-title">E-mail: <b>{{order.buyer_email_address}}</b></p>
+        <p class="card-text"><b>{{order.category}}</b></p>
+        <p class="card-text">Size:- <b>{{order.size}}</b></p>
+        <p class="card-text">Quantity: <b>{{order.quantity}}</b>x</p>
         <p class="card-text">{{order.address}}</p>
         <p class="card-text">Contact Number:{{order.buyer_contact_number}}</p>
         <a href="#" class="btn btn-danger"><fa-icon [icon]="faTruckPickup"></fa-icon>Dispatched</a>
       </div>
     </div>
   </div>
-
 </div>
 <div class="container" *ngIf="orders.length < 1">
   <div class="row">

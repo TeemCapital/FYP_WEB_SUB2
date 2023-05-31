@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, count, finalize, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Products } from 'src/app/Interface/products';
+import { faTshirt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -18,6 +19,7 @@ export class ProductDetailsComponent implements OnInit {
   productid:any;
   url!:string;
   faHeart=faHeart;
+  faTshirt=faTshirt;
   faShoppingBag=faShoppingBag;
   faStar=faStar;
   quantity:any=1;
