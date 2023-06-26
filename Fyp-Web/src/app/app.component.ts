@@ -103,6 +103,7 @@ export class AppComponent implements OnInit{
       this.logoutNotification=true;
       setTimeout(() => {
           this.logoutNotification=false
+          
           this.buyerLoggedIn=false
           window.location.reload();
       }, 2000);
