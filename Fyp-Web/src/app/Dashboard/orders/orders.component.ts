@@ -16,6 +16,7 @@ export class OrdersComponent implements OnInit {
   loadingData:boolean=false;
   faTruckPickup=faTruck;
   showData:boolean=false;
+  status!:string;
   constructor(private httpSer:HttpClient,private httpService:HttpServicesService,private productSer:ProductsServiceService) { }
 
 

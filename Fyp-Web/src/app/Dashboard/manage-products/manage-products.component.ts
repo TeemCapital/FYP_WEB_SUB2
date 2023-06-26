@@ -49,6 +49,7 @@ export class ManageProductsComponent implements OnInit {
       }
     );
     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    
     this.showNotification=true;
     setTimeout(() => {
       this.showNotification=false;

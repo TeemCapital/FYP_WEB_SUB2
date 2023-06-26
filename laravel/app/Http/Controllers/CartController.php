@@ -48,7 +48,6 @@ class CartController extends Controller
     public function cartData($id){
         return user::find($id)->showCartData;
     }
-
     public function placeOrder(Request $request){
         $order=new order();
         $order->user_id=$request->user_id;
