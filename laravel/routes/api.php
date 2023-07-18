@@ -27,6 +27,7 @@ Route::post('add',[ProductController::class,'add']);
 Route::put('update',[ProductController::class,'update']);
 Route::delete('delete',[ProductController::class,'delete']);
 Route::get('show',[ProductController::class,'show']);
+
 Route::get('showWomenProducts',[ProductController::class,'showWomenProducts']);
 Route::get('showKidsProducts',[ProductController::class,'showKidsProducts']);
 Route::get('user/{id}/products',[ProductController::class,'sellerProductData']);
@@ -50,3 +51,4 @@ Route::get('{id}/showFavourites',[favouritesController::class,'showFavourites'])
 Route::post('addToFavourites',[favouritesController::class,'addToFavourites']);
 
 Route::delete('{id}/deleteFav',[favouritesController::class,'deleteFav']);
+Route::delete('{id}/orderCompleted',[ordersController::class,'orderCompleted']);

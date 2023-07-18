@@ -31,7 +31,6 @@ export class UserSignupComponent implements OnInit {
               this.signupNoti=false;
           }, 2000);
         }
-
       },(error)=>{
         this.errorNotifMessage=error.error.message;
         document.body.scrollTop = document.documentElement.scrollTop = 0;

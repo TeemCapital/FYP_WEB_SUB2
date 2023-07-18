@@ -13,6 +13,8 @@ import { CartComponent } from './SavedItems/cart/cart.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './SavedItems/favourite/favourite.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { AboutComponent } from './about/about.component';
+import { OfferingsComponent } from './offerings/offerings.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { PaymentsComponent } from './payments/payments.component';
     HomeComponent,
     PageNotFoundComponent,
     PaymentsComponent,
+    AboutComponent,
+    OfferingsComponent,
   ],
   imports: [
     BrowserModule,

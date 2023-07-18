@@ -14,6 +14,7 @@ export class OrdersComponent implements OnInit {
   userId:any=localStorage.getItem('UID')
   orders!:any[];
   loadingData:boolean=false;
+  orderDeletedNoti:boolean=false;
   faTruckPickup=faTruck;
   showData:boolean=false;
   status!:string;
@@ -37,6 +38,19 @@ export class OrdersComponent implements OnInit {
       }
 
 
+    )
+  }
+  orderCompleted(i:any,order:any){
+    this.orders.splice(i,1)
+    this.httpSer.delete(`${this.httpService.testUrl}/${order.id}/orderCompleted`).subscribe(
+      (res)=>{
+        if(res){
+          this.orderDeletedNoti=true
+          setTimeout(() => {
+            this.orderDeletedNoti=false
+          }, 2000);
+        }
+      }
     )
   }
 

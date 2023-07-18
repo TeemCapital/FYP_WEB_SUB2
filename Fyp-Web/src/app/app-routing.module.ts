@@ -10,10 +10,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FavouriteComponent } from './SavedItems/favourite/favourite.component';
 import { UserLoginComponent } from './Accounts/User/user-login/user-login.component';
 import { UserSignupComponent } from './Accounts/User/user-signup/user-signup.component';
+import { AboutComponent } from './about/about.component';
+import { OfferingsComponent } from './offerings/offerings.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home', component:HomeComponent},
+  {path:'about', component:AboutComponent},
+  {path:'offerings', component:OfferingsComponent},
   {path:'favourite',component:FavouriteComponent},
   {path:':id/payments',component:PaymentsComponent},
   { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
@@ -21,7 +25,6 @@ const routes: Routes = [
   { path: 'dashboard', loadChildren: () => import('./Dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'savedItems', loadChildren: () => import('./SavedItems/saved-items.module').then(m => m.SavedItemsModule) },
   {path:'**',component:PageNotFoundComponent}
-
 ];
 
 @NgModule({

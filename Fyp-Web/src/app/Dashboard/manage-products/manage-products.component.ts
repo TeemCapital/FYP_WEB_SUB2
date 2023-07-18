@@ -32,7 +32,6 @@ export class ManageProductsComponent implements OnInit {
 
   }
 
-
   submit(data:any){
     const formData=new FormData();
     formData.append('description',data.description),
@@ -49,7 +48,7 @@ export class ManageProductsComponent implements OnInit {
       }
     );
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    
+
     this.showNotification=true;
     setTimeout(() => {
       this.showNotification=false;
