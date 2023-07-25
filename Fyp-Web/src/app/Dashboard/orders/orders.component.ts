@@ -45,6 +45,7 @@ export class OrdersComponent implements OnInit {
     this.httpSer.delete(`${this.httpService.testUrl}/${order.id}/orderCompleted`).subscribe(
       (res)=>{
         if(res){
+          document.body.scrollTop = document.documentElement.scrollTop = 0;
           this.orderDeletedNoti=true
           setTimeout(() => {
             this.orderDeletedNoti=false

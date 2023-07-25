@@ -11,7 +11,6 @@ const routes: Routes = [
   {path:'women/:id',component:ProductDetailsComponent,canActivate:[productGuardService]},
   {path:'kids',component:ProductsComponent},
   {path:'kids/:id',component:ProductDetailsComponent,canActivate:[productGuardService]}
-
 ];
 
 @NgModule({

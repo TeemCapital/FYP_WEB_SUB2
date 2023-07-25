@@ -47,10 +47,7 @@ export class CartComponent implements OnInit,OnDestroy {
     this.MenproductData.splice(i,1)
     this.http.delete(`${this.httpServ.testUrl}/delete/`+productData.id).subscribe((res)=>{
       this.prodServ.deleted$.next(true);
-      // this.finalAmount=this.finalAmount - productData.totalPrice;
-      // this.prodServ.count=this.prodServ.count-1;
-      // let itemCount=this.prodServ.count-1;
-      // this.prodServ.cartItemsCount$.next((itemCount));
+
   })
 
     // this.prodServ.cartProduct=this.MenproductData;
@@ -58,17 +55,7 @@ export class CartComponent implements OnInit,OnDestroy {
 
   }
   checkOut(){
-    // this.prodServ.checkoutData=this.MenproductData;
-    // console.log(this.prodServ.checkoutData,"checkoutData")
-    // document.body.scrollTop = document.documentElement.scrollTop = 0;
-    // this.checkOutNotification=true
-    // setTimeout(() => {
-    //   this.checkOutNotification=false;
-    //   this.prodServ.finalCheckOutPrice=this.finalAmount;
-    //   this.router.navigate(["/payment"])
-    // }, 2000);
     this.router.navigate([`${this.userId}/payments`])
-
   }
 ngOnDestroy(): void {
     this.finalAmount=0;

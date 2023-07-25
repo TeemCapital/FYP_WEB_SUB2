@@ -40,7 +40,9 @@
         <label class="form-label "><b>Payment method</b>
           <small style="color: red; font-size: 10px; margin-left: 5px">(Required*)</small></label>
           <select class="form-select" [(ngModel)]="selectedPaymentMethod" name="category" aria-label="Default select example">
-            <option *ngFor="let payment of paymentMethod" [value]="paymentMethod">{{payment}}</option>
+            <option  value="Cash on Delivery">Cash on Delivery</option>
+            <option  value="Pay online">Pay online</option>
+
           </select>
       </div>
 
@@ -48,11 +50,50 @@
   </div>
   <div class="container">
     <div class="row mx-auto">
-      <div class="col-md-8 mx-auto">
-        <a class="btn btn-danger mx-2 my-xs-4" (click)="placeOrder()"><fa-icon [icon]="faArrow" ></fa-icon> Place Order</a>
+      <div class="col-md-12 mx-auto">
+        <a class="btn btn-danger mx-2 my-xs-4" (click)="placeOrder()"><fa-icon [icon]="faArrow" ></fa-icon> Place order with Cash on Delivery</a>
+          <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Pay Online
+          </button>
         <a class="btn btn-dark mx-2" routerLink="/home"><fa-icon [icon]="faShopping" ></fa-icon> Continue Shopping</a>
         <span class="bg-danger text-white rounded p-3 ">Total:{{finalAmount | currency}}</span>
       </div>
       </div>
   </div>
 
+<!-- Button trigger modal -->
+
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Payments</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <input type="text" class="form-control"  placeholder="Credit card number" maxlength="14">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i> <fa-icon [icon]="creditCard"></fa-icon></i>
+            </span>
+          </div>
+        </div>
+        <div class="input-group my-2">
+          <input type="text" maxlength="4" class="form-control" placeholder="CVV">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i> <fa-icon [icon]="cvv"></fa-icon></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="placeOrder()">Pay Now</button>
+      </div>
+    </div>
+  </div>
+</div>

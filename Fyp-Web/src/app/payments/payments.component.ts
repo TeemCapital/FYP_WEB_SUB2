@@ -1,4 +1,4 @@
-import { faArrowRight,faShoppingBag,faTruck,faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight,faShoppingBag,faTruck,faCreditCard, faKey } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
 import { ProductsServiceService } from '../Services/products-service.service';
 import { CartModel } from '../Services/products.model';
@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./payments.component.scss']
 })
 export class PaymentsComponent implements OnInit {
+  creditCard=faCreditCard;
+  cvv=faKey;
+
   showCheckoutData!:CartModel[];
   finalAmount!:number;
   products!:any[];
@@ -22,7 +25,6 @@ export class PaymentsComponent implements OnInit {
   address!:string;
   buyer_email_address!:string;
   buyer_contact_number!:string;
-  paymentMethod:string[]=['Pay with card', 'Cash on Delivery']
   selectedPaymentMethod!:string;
   orderNoti:boolean=false;
   constructor(private httpSer:HttpServicesService,private prodServ:ProductsServiceService,private http:HttpClient,private router:Router) { }
